@@ -1,17 +1,23 @@
+
 import rawQuestions from "./uts.json"
 
-import image014 from "../../assets/soal/uts-014.png"
-import image015 from "../../assets/soal/uts-015.png"
-import image016 from "../../assets/soal/uts-016.png"
-import image019 from "../../assets/soal/uts-019.png"
-import image027 from "../../assets/soal/uts-027.png"
+const imageModules = import.meta.glob<string>(
+  "../../assets/soal/*.{png,jpg,jpeg,webp}",
+  {
+    eager: true,
+    query: "?url",
+    import: "default",
+  },
+)
 
-const imageMap: Record<string, string> = {
-  "images/uts-014.png": image014,
-  "images/uts-015.png": image015,
-  "images/uts-016.png": image016,
-  "images/uts-019.png": image019,
-  "images/uts-027.png": image027,
+const imageMap: Record<string, string> = {}
+
+for (const [path, url] of Object.entries(imageModules)) {
+  const filename = path.split("/").pop()
+
+  if (filename) {
+    imageMap[filename] = url
+  }
 }
 
 interface RawUTSQuestion {
@@ -40,13 +46,22 @@ export interface UTSQuestion {
 
 export const utsQuestions: UTSQuestion[] = (
   rawQuestions as RawUTSQuestion[]
-).map((q) => ({
-  id: q.id,
-  question: q.question,
-  topic: q.topic,
-  image: q.image ? imageMap[q.image] : undefined,
-  options: q.options,
-  correctAnswer: q.correctAnswer,
-  explanation: q.explanation,
-  verificationStatus: q.verificationStatus,
-}))
+).map((q) => {
+  const filename = q.image?.split("/").pop()
+  const image = filename ? imageMap[filename] : undefined
+
+  if (q.image && !image) {
+    console.warn(`Gambar tidak ditemukan untuk soal ${q.id}: ${q.image}`)
+  }
+
+  return {
+    id: q.id,
+    question: q.question,
+    topic: q.topic,
+    image,
+    options: q.options,
+    correctAnswer: q.correctAnswer,
+    explanation: q.explanation,
+    verificationStatus: q.verificationStatus,
+  }
+})

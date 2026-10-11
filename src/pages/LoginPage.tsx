@@ -167,7 +167,7 @@ export default function LoginPage() {
             className="p-3 rounded-lg text-xs font-bold"
             style={{ background: "#f0fdf4", border: "2px solid #22C55E", color: "#166534" }}
           >
-            💡 <strong>Default:</strong> Password = NIM kamu. Admin: nim=<code>admin</code> pass=<code>admin</code>
+            💡 <strong>Default:</strong> Uername = NIM kamu. Password = NIM kamu.
           </div>
 
           {/* Error */}

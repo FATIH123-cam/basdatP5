@@ -1,462 +1,779 @@
 [
-    {
-        "id": "uts-001",
-        "year": null,
-        "originalNumber": 1,
-        "question": "Tabel-tabel yang sudah dinormalisasi kemudian dilakukan denormalisasi umumnya berpeluang dilakukan pada kondisi: ....",
-        "topic": "Normalisasi",
-        "image": null,
-        "options": [
-            "Dua entities dengan one-to-one relationship",
-            "Reference Data (relationship 1: N di mana 1 sisi memiliki data yang tidak digunakan dalam hubungan lainnya)",
-            "Benar semuanya",
-            "Many-to-many relationship dengan nonkey attributes"
-        ],
-        "correctAnswer": 2,
-        "explanation": "Denormalisasi dilakukan untuk meningkatkan performa pembacaan data. Kondisi yang memungkinkan denormalisasi antara lain relasi 1:1, data referensi/lookup yang jarang berubah, dan penggabungan atribut untuk menghindari JOIN yang mahal. Oleh karena itu, 'Benar semuanya' adalah pilihan yang tepat.",
-        "verificationStatus": "verified"
-    },
-    {
-        "id": "uts-002",
-        "year": null,
-        "originalNumber": 2,
-        "question": "Mana dari pernyataan berikut yang benar tentang routines dan triggers? ....",
-        "topic": "SQL & Triggers",
-        "image": null,
-        "options": [
-            "Keduanya disimpan dalam database",
-            "Keduanya dapat berjalan secara otomatis",
-            "Keduanya termasuk dalam kode prosedural",
-            "Keduanya harus dipanggil untuk menjalankannya"
-        ],
-        "correctAnswer": 0,
-        "explanation": "Stored routines (seperti prosedur/fungsi) dan triggers sama-sama dikompilasi dan disimpan di dalam basis data (stored in the database). Perbedaannya, trigger berjalan otomatis (event-driven), sedangkan routine harus dipanggil secara eksplisit.",
-        "verificationStatus": "verified"
-    },
-    {
-        "id": "uts-003",
-        "year": null,
-        "originalNumber": 3,
-        "question": "Termasuk dalam field data integrity adalah: ....",
-        "topic": "Integritas Data",
-        "image": null,
-        "options": [
-            "Null value control",
-            "Penanganan missing data",
-            "Nama physical file",
-            "Denormalisasi"
-        ],
-        "correctAnswer": 0,
-        "explanation": "Field data integrity (atau domain integrity) memastikan bahwa nilai dalam suatu kolom valid. Ini mencakup tipe data, batasan panjang, aturan validasi, dan kontrol nilai Null (Null value control) yang menentukan apakah suatu kolom boleh kosong atau tidak.",
-        "verificationStatus": "verified"
-    },
-    {
-        "id": "uts-004",
-        "year": null,
-        "originalNumber": 4,
-        "question": "Perintah SQL untuk membuang tabel Mahasiswa dari database adalah: ....",
-        "topic": "SQL",
-        "image": null,
-        "options": [
-            "Ini memungkinkan situs Web untuk menyesuaikan desain sesuai dengan preferensi pengguna",
-            "Ini memungkinkan situs Web untuk menyesuaikan konten berdasarkan lokasi dan preferensi pengguna",
-            "Ini memungkinkan orang yang berbeda untuk memprogram sistem secara responsif",
-            "DROP TABLE MAHASISWA",
-            "REMOVE TABLE MAHASISWA"
-        ],
-        "correctAnswer": 3,
-        "explanation": "Dalam DDL (Data Definition Language) SQL, perintah untuk menghapus atau membuang tabel beserta seluruh strukturnya dari database adalah DROP TABLE diikuti dengan nama tabel.",
-        "verificationStatus": "verified"
-    },
-    {
-        "id": "uts-005",
-        "year": null,
-        "originalNumber": 5,
-        "question": "Data yang menjelaskan data lain, melingkupi panjang data, keterangan data, dll, disebut: ....",
-        "topic": "Konsep Basis Data",
-        "image": null,
-        "options": [
-            "Meta data",
-            "Quality data",
-            "Basis data",
-            "Informasi"
-        ],
-        "correctAnswer": 0,
-        "explanation": "Metadata adalah 'data tentang data'. Dalam konteks basis data, metadata menyimpan definisi, struktur, tipe data, panjang field, dan karakteristik lain dari data yang disimpan di dalam database.",
-        "verificationStatus": "verified"
-    },
-    {
-        "id": "uts-006",
-        "year": null,
-        "originalNumber": 6,
-        "question": "Bagaimana Anda mengubah kolom Nama dari Sinta menjadi Santi pada tabel Pengguna? ....",
-        "topic": "SQL",
-        "image": null,
-        "options": [
-            "UPDATE Pengguna SET Nama = 'Santi' WHERE Nama = 'Sinta'",
-            "MODIFY Pengguna SET Nama = 'Santi' WHERE Nama = 'Sinta'",
-            "UPDATE Pengguna SET Nama = 'Sinta' INTO Nama = 'Santi'",
-            "UPDATE Pengguna SET Nama = 'Santi' WHERE Nama = 'Sinta'"
-        ],
-        "correctAnswer": 0,
-        "explanation": "Sintaks DML yang benar untuk memperbarui data adalah UPDATE nama_tabel SET kolom = 'nilai_baru' WHERE kondisi. (Opsi A dan D identik, indeks 0 dipilih).",
-        "verificationStatus": "verified"
-    },
-    {
-        "id": "uts-007",
-        "year": null,
-        "originalNumber": 7,
-        "question": "Fakta-fakta yang berupa teks, grafik, gambar, suara, (segmen) video atau kombinasinya yang telah diolah menggunakan komputer menjadi bahan untuk pengambilan keputusan oleh seorang manager, disebut: ....",
-        "topic": "Konsep Basis Data",
-        "image": null,
-        "options": [
-            "Meta data",
-            "Quality data",
-            "Informasi",
-            "Basis data"
-        ],
-        "correctAnswer": 2,
-        "explanation": "Fakta mentah disebut data. Ketika data telah diolah, diorganisasikan, dan diberikan konteks sehingga memiliki makna dan berguna untuk pengambilan keputusan, ia disebut Informasi.",
-        "verificationStatus": "verified"
-    },
-    {
-        "id": "uts-008",
-        "year": null,
-        "originalNumber": 8,
-        "question": "Apa tipe join dari syntax berikut: SELECT MHS.ID_MAHASISWA, MK.ID_MAHASISWA, NAMA_MAHASISWA, ID_MK FROM MAHASISWA MHS, MATAKULIAH MK WHERE MHS.ID_MAHASISWA = MK.ID_MAHASISWA ....",
-        "topic": "SQL",
-        "image": null,
-        "options": [
-            "Natural join",
-            "Cartesian join",
-            "Outer join",
-            "Equi-join"
-        ],
-        "correctAnswer": 3,
-        "explanation": "Kueri tersebut menghubungkan dua tabel menggunakan kondisi persamaan (=) pada kolom yang bersesuaian di klausa WHERE. Ini adalah bentuk klasik dari Equi-join.",
-        "verificationStatus": "verified"
-    },
-    {
-        "id": "uts-009",
-        "year": null,
-        "originalNumber": 9,
-        "question": "Software sistem yang memungkinkan user mendefinisikan, membuat, memelihara, dan mengontrol akses terhadap basis data disebut: ....",
-        "topic": "Konsep Basis Data",
-        "image": null,
-        "options": [
-            "Tables of data",
-            "Data Definition Language",
-            "Database Management System",
-            "Entity Relationship Diagram"
-        ],
-        "correctAnswer": 2,
-        "explanation": "Database Management System (DBMS) adalah perangkat lunak (software) yang berinteraksi dengan pengguna akhir, aplikasi, dan basis data itu sendiri untuk menangkap dan menganalisis data, serta mengelola akses dan pemeliharaan.",
-        "verificationStatus": "verified"
-    },
-    {
-        "id": "uts-010",
-        "year": null,
-        "originalNumber": 10,
-        "question": "Manakah dari kueri berikut ini yang selalu memberikan jawaban yang sama seperti kueri berjaring (nested query) berikut: select * from R where a in (select S.a from S) ....",
-        "topic": "SQL",
-        "image": null,
-        "options": [
-            "select R.* from R,(select distinct a from S) as S1 where R.a=S1.a",
-            "select R.* from R, S where R.a=S.a (D)",
-            "select distinct R.* from R,S where R.a=S.a",
-            "select R.* from R,S where R.a=S.a and is unique R"
-        ],
-        "correctAnswer": 2,
-        "explanation": "Nested query IN menghasilkan baris dari R yang memiliki setidaknya satu kecocokan di S tanpa menghasilkan duplikat dari R. 'select distinct R.* from R, S where R.a=S.a' mencapai hasil logis yang setara dengan menghindari duplikasi baris dari R.",
-        "verificationStatus": "verified"
-    },
-    {
-        "id": "uts-011",
-        "year": null,
-        "originalNumber": 11,
-        "question": "Berikut kerugian sistem berbasis file (file processing system), kecuali: ....",
-        "topic": "Konsep Basis Data",
-        "image": null,
-        "options": [
-            "Data dependence",
-            "Keterbatasan data sharing",
-            "Waktu development yang panjang",
-            "Mengurangi duplikasi data"
-        ],
-        "correctAnswer": 3,
-        "explanation": "Sistem berbasis file tradisional terkenal dengan tingginya redundansi data. Oleh karena itu, 'mengurangi duplikasi data' BUKAN merupakan kerugian dari sistem file, melainkan kelebihan dari DBMS.",
-        "verificationStatus": "verified"
-    },
-    {
-        "id": "uts-012",
-        "year": null,
-        "originalNumber": 12,
-        "question": "Mainframe tunggal dihubungkan dengan sejumlah terminal, termasuk arsitektur DBMS jenis: ....",
-        "topic": "Arsitektur Basis Data",
-        "image": null,
-        "options": [
-            "Peer to peer",
-            "File-Server",
-            "Client-Server",
-            "Teleprocessing"
-        ],
-        "correctAnswer": 3,
-        "explanation": "Arsitektur di mana satu komputer pusat (mainframe) melakukan semua pemrosesan dan terhubung ke terminal-terminal 'bodoh' disebut Teleprocessing.",
-        "verificationStatus": "verified"
-    },
-    {
-        "id": "uts-013",
-        "year": null,
-        "originalNumber": 13,
-        "question": "Physical design sering dilakukan dengan mengikuti aturan kepatuhan (regulatory compliance), diantaranya yaitu: ....",
-        "topic": "Physical Design",
-        "image": null,
-        "options": [
-            "Semuanya benar",
-            "Committee of Sponsoring Organizations (COSO)",
-            "Control Objectictives for Information and Related Technology (COBIT)",
-            "Information Technology Infrastructure Library (ITIL)"
-        ],
-        "correctAnswer": 0,
-        "explanation": "COSO, COBIT, dan ITIL adalah framework tata kelola dan kepatuhan yang dijadikan acuan dalam perancangan fisik dan operasional TI.",
-        "verificationStatus": "verified"
-    },
-    {
-        "id": "uts-014",
-        "year": null,
-        "originalNumber": 14,
-        "question": "Cocokkanlah antara istilah dan pengertiannya. (Dropdowns untuk Entity cluster, Specialization, Subtype, Attribute inheritance, Overlap rule)",
-        "topic": "ERD",
-        "image": "images/uts-014.png",
-        "options": [
-            "Pencocokan Istilah (Dropdown)"
-        ],
-        "correctAnswer": null,
-        "explanation": "Pada EER: Entity cluster: A group of associative entity types and relationships. Specialization: Creating subtype for an entity type. Subtype: Subset of supertype. Attribute inheritance: Subtype gets supertype attributes. Overlap rule: Entity belongs to two subtypes.",
-        "verificationStatus": "needs_review"
-    },
-    {
-        "id": "uts-015",
-        "year": null,
-        "originalNumber": 15,
-        "question": "Ilustrasi \"Samudra Musik\": Entitas musisi memiliki dua buah relationship terhadap entitas album.\nSelect one:\nTrue\nFalse",
-        "topic": "ERD",
-        "image": "images/uts-015.png",
-        "options": [
-            "True",
-            "False"
-        ],
-        "correctAnswer": 0,
-        "explanation": "Terdapat dua interaksi: Musisi membawakan lagu dalam album, dan musisi dapat bertindak sebagai produser album. (Asumsi berdasarkan aturan naratif nomor 8 dan relasi terkait).",
-        "verificationStatus": "needs_review"
-    },
-    {
-        "id": "uts-016",
-        "year": null,
-        "originalNumber": 16,
-        "question": "Perhatikan notasi EER untuk LSM Y dibawah ini.\nSetiap orang pada lembaga Y dikelompokkan menjadi \"employee\", \"volunteer\" atau \"donor\".\nSelect one:\nTrue\nFalse",
-        "topic": "ERD",
-        "image": "images/uts-016.png",
-        "options": [
-            "True",
-            "False"
-        ],
-        "correctAnswer": 0,
-        "explanation": "Garis ganda (total specialization) menyatakan bahwa instans dari Person HARUS setidaknya menjadi Employee, Volunteer, atau Donor.",
-        "verificationStatus": "verified"
-    },
-    {
-        "id": "uts-017",
-        "year": null,
-        "originalNumber": 17,
-        "question": "Normalisasi ialah proses menentukan atribut-atribut mana dikelompokkan pada suatu tabel dengan menghilangkan anomali-anomali yang ada agar tidak terjadi functional dependencies ....\nSelect one:\nSalah\nBetul",
-        "topic": "Normalisasi",
-        "image": null,
-        "options": [
-            "Salah",
-            "Betul"
-        ],
-        "correctAnswer": 0,
-        "explanation": "Salah. Normalisasi menghilangkan anomali, BUKAN functional dependencies. Functional dependencies justru dipertahankan dan dikelola (agar bergantung penuh pada Primary Key).",
-        "verificationStatus": "verified"
-    },
-    {
-        "id": "uts-018",
-        "year": null,
-        "originalNumber": 18,
-        "question": "Suatu tabel memiliki kualifikasi sebagai relation apabila memenuhi kualifikasi sebagai berikut, terkecuali: ....",
-        "topic": "Konsep Model Relasional",
-        "image": null,
-        "options": [
-            "Nama kolom pada tabel dapat sama",
-            "Setiap nilai pada field harus atomic",
-            "Urutan kolom tidak masalah",
-            "Setiap baris harus unik, yait tidak boleh ada baris pada seluruh field memiliki nilai yang sama"
-        ],
-        "correctAnswer": 0,
-        "explanation": "Model Relasional mewajibkan nama kolom unik di dalam satu relasi/tabel.",
-        "verificationStatus": "verified"
-    },
-    {
-        "id": "uts-019",
-        "year": null,
-        "originalNumber": 19,
-        "question": "Entitas album dengan atribut Id Album, Judul, Tgl_Copyright, Format.\nSelect one:\nTrue\nFalse",
-        "topic": "ERD",
-        "image": "images/uts-019.png",
-        "options": [
-            "True",
-            "False"
-        ],
-        "correctAnswer": 0,
-        "explanation": "ERD menggambarkan Album dengan atribut intinya. (Berdasarkan deskripsi aslinya).",
-        "verificationStatus": "needs_review"
-    },
-    {
-        "id": "uts-020",
-        "year": null,
-        "originalNumber": 20,
-        "question": "Pernyataan mana yang dapat digunakan untuk menampilkan seluruh data dari tabel Mahasiswa yang memiliki nama diawali dengan p? ....",
-        "topic": "SQL",
-        "image": null,
-        "options": [
-            "SELECT * FROM Mahasiswa WHERE nama LIKE '%p%';",
-            "SELECT * FROM Mahasiswa WHERE nama LIKE '_p%';",
-            "SELECT * FROM Mahasiswa WHERE nama LIKE '%p';",
-            "SELECT * FROM Mahasiswa WHERE nama LIKE 'p%';"
-        ],
-        "correctAnswer": 3,
-        "explanation": "Pola 'p%' berarti diawali huruf p dan diikuti oleh string apapun.",
-        "verificationStatus": "verified"
-    },
-    {
-        "id": "uts-021",
-        "year": null,
-        "originalNumber": 21,
-        "question": "Organisasi file adalah teknik untuk secara fisik mengatur record dalam file yang disimpan dalam secondary storage dengan tipe organisasi file berikut: ....",
-        "topic": "Physical Design",
-        "image": null,
-        "options": [
-            "Indexed",
-            "Semuanya benar",
-            "Normalized",
-            "Parallel"
-        ],
-        "correctAnswer": 0,
-        "explanation": "Indexed adalah metode organisasi file, sedangkan yang lainnya bukan.",
-        "verificationStatus": "verified"
-    },
-    {
-        "id": "uts-022",
-        "year": null,
-        "originalNumber": 22,
-        "question": "Normalisasi dilakukan karena suatu tabel mengandung multiple themes/multiple logical dependencies/multiple entity types, sehingga setiap tabel hasil normalisasi harus memenuhi referential integrity antar tabel yang terkait ....\nSelect one:\nBetul\nSalah",
-        "topic": "Normalisasi",
-        "image": null,
-        "options": [
-            "Betul",
-            "Salah"
-        ],
-        "correctAnswer": 0,
-        "explanation": "Betul. Memecah multiple themes menjadi tabel terpisah mengharuskan penegakan referential integrity.",
-        "verificationStatus": "verified"
-    },
-    {
-        "id": "uts-023",
-        "year": null,
-        "originalNumber": 23,
-        "question": "Berikut ini mana syntaks SQL yang benar? ....",
-        "topic": "SQL",
-        "image": null,
-        "options": [
-            "SELECT FROM Pengguna WHERE Username = 'Pengguna1'",
-            "SELECT Username AND Password FROM Pengguna",
-            "SELECT Username, Password FROM Pengguna",
-            "SELECT Username, Password WHERE Username = 'user1'"
-        ],
-        "correctAnswer": 2,
-        "explanation": "Struktur query yang benar dipisahkan oleh koma: SELECT kolom1, kolom2 FROM tabel.",
-        "verificationStatus": "verified"
-    },
-    {
-        "id": "uts-024",
-        "year": null,
-        "originalNumber": 24,
-        "question": "Manakah dari kueri SQL berikut yang benar untuk menampilkan semua kota dengan kondisi, suhu, dan kelembaban yang kelembabannya berada di kisaran 60 hingga 75 dari tabel Cuaca? ....",
-        "topic": "SQL",
-        "image": null,
-        "options": [
-            "SELECT * FROM Cuaca WHERE Kelembaban IN (60 to 75)",
-            "SELECT * FROM Cuaca WHERE Kelembaban IN (60, 75)",
-            "SELECT * FROM Cuaca WHERE Kelembaban IN BETWEEN 60 AND 75",
-            "SELECT * FROM Cuaca WHERE Kelembaban BETWEEN 60 AND 75"
-        ],
-        "correctAnswer": 3,
-        "explanation": "Menggunakan operator BETWEEN X AND Y.",
-        "verificationStatus": "verified"
-    },
-    {
-        "id": "uts-025",
-        "year": null,
-        "originalNumber": 25,
-        "question": "Tipe data VARCHAR2 adalah fixed-length character data dengan maximum length 4.000 character, misalnya VARCHAR2(50) akan selalu menghabiskan 50 karakter dalam storage space ....\nSelect one:\nBetul\nSalah",
-        "topic": "Tipe Data",
-        "image": null,
-        "options": [
-            "Betul",
-            "Salah"
-        ],
-        "correctAnswer": 1,
-        "explanation": "Salah. VARCHAR2 adalah variable-length, tidak akan memakan 50 karakter jika teks yang dimasukkan lebih pendek.",
-        "verificationStatus": "verified"
-    },
-    {
-        "id": "uts-026",
-        "year": null,
-        "originalNumber": 26,
-        "question": "Manakah sintaks yang benar untuk menerapkan fungsi UNION? ....",
-        "topic": "SQL",
-        "image": null,
-        "options": [
-            "SELECT FROM table_name1 AND table_name2",
-            "SELECT column_name(s) FROM table_name1 UNION table_name2",
-            "SELECT column_name(s) FROM table_name1 UNION SELECT column_name(s) FROM table_name2",
-            "UNION SELECT column_name(s) FROM table_name1 SELECT column_name(s) FROM table_name2"
-        ],
-        "correctAnswer": 2,
-        "explanation": "UNION menghubungkan dua perintah SELECT penuh.",
-        "verificationStatus": "verified"
-    },
-    {
-        "id": "uts-027",
-        "year": null,
-        "originalNumber": 27,
-        "question": "Relationship antara entitas album dan lagu memiliki cardinality Many-To-Many pada ilustrasi Samudra Musik.\nSelect one:\nTrue\nFalse",
-        "topic": "ERD",
-        "image": "images/uts-027.png",
-        "options": [
-            "True",
-            "False"
-        ],
-        "correctAnswer": 1,
-        "explanation": "False. Aturan no 6 menyatakan setiap lagu hanya muncul pada satu album, berarti relasinya One-To-Many.",
-        "verificationStatus": "verified"
-    },
-    {
-        "id": "uts-028",
-        "year": null,
-        "originalNumber": 28,
-        "question": "Fasilitas enquiry (query language) data termasuk fasilitas: ....",
-        "topic": "SQL",
-        "image": null,
-        "options": [
-            "Data Manipulation Language",
-            "Keamanan sistem",
-            "Data Definition Language",
-            "Data Control Language"
-        ],
-        "correctAnswer": 0,
-        "explanation": "Query Language bagian dari DML (Data Manipulation Language).",
-        "verificationStatus": "verified"
-    }
+  {
+    "id": "UTS-001",
+    "originalNumber": null,
+    "question": "Tabel-tabel yang sudah dinormalisasi kemudian dilakukan denormalisasi umumnya berpeluang dilakukan pada kondisi: ....",
+    "topic": "Normalisasi dan denormalisasi",
+    "image": null,
+    "options": [
+      "Dua entities dengan one-to-one relationship",
+      "Reference Data (relationship 1:N di mana 1 sisi memiliki data yang tidak digunakan dalam hubungan lainnya)",
+      "Dua opsi di atas (A dan B)",
+      "Many-to-many relationship dengan nonkey attributes"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Denormalisasi wajar dilakukan pada relasi one-to-one (dua entitas digabung) dan pada reference data 1:N untuk mengurangi join. Many-to-many dengan atribut nonkey tetap dipertahankan sebagai tabel asosiatif, sehingga opsi D salah.",
+    "verificationStatus": "verified"
+  },
+  {
+    "id": "UTS-002",
+    "originalNumber": null,
+    "question": "Mana dari pernyataan berikut yang benar tentang routines dan triggers? ....",
+    "topic": "Objek database (routine dan trigger)",
+    "image": null,
+    "options": [
+      "Keduanya disimpan dalam database",
+      "Keduanya dapat berjalan secara otomatis",
+      "Keduanya termasuk dalam kode non-prosedural",
+      "Keduanya harus dipanggil untuk menjalankannya"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Routine dan trigger keduanya disimpan sebagai objek database dan ditulis dalam kode prosedural (misalnya PL/SQL). Opsi B salah karena routine tidak berjalan otomatis, opsi C salah karena keduanya prosedural, dan opsi D salah karena trigger tidak perlu dipanggil manual.",
+    "verificationStatus": "verified"
+  },
+  {
+    "id": "UTS-003",
+    "originalNumber": null,
+    "question": "Termasuk dalam field data integrity adalah: ....",
+    "topic": "Integritas data",
+    "image": null,
+    "options": [
+      "Null value control",
+      "Penanganan missing data",
+      "Nama physical file",
+      "Denormalisasi"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Null value control adalah bagian dari kontrol integritas data, misalnya melalui constraint NOT NULL yang menjaga kolom wajib tidak kosong. Penanganan missing data lebih berkaitan dengan kualitas data, sedangkan nama physical file dan denormalisasi bukan aspek integritas.",
+    "verificationStatus": "verified"
+  },
+  {
+    "id": "UTS-004",
+    "originalNumber": null,
+    "question": "File organization adalah teknik untuk secara fisik menata record-record suatu file pada secondary storage. Faktor-faktor yang perlu diperlukan saat memilih tipe file organization: ....",
+    "topic": "Organisasi file",
+    "image": null,
+    "options": [
+      "Inefisiensi storage space utilization",
+      "Tidak ada kaitannya dengan proteksi data",
+      "Record-record pada file tidak perlu ditata karena tidak mengakomodasi kebutuhan di masa datang",
+      "Minimisasi kebutuhan untuk reorganisasi"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Pemilihan tipe organisasi file perlu mempertimbangkan seberapa sering file harus direorganisasi saat kebutuhan berubah. Memilih organisasi yang meminimalkan kebutuhan reorganisasi menekan biaya pemeliharaan. Opsi lain keliru karena efisiensi storage dan kebutuhan masa depan justru harus diperhitungkan.",
+    "verificationStatus": "verified"
+  },
+  {
+    "id": "UTS-005",
+    "originalNumber": null,
+    "question": "Perintah SQL untuk membuang tabel Mahasiswa dari database adalah: ....",
+    "topic": "SQL - DDL",
+    "image": null,
+    "options": [
+      "Ini memungkinkan situs Web untuk menyesuaikan desain sesuai dengan preferensi pengguna",
+      "Ini memungkinkan situs Web untuk menyesuaikan konten berdasarkan lokasi dan preferensi pengguna",
+      "Ini memungkinkan orang yang berbeda untuk memprogram sistem secara responsif",
+      "DROP TABLE MAHASISWA",
+      "REMOVE TABLE MAHASISWA"
+    ],
+    "correctAnswer": 3,
+    "explanation": "DROP TABLE adalah perintah DDL yang menghapus definisi sekaligus isi tabel dari database. REMOVE TABLE bukan perintah SQL standar.",
+    "verificationStatus": "verified"
+  },
+  {
+    "id": "UTS-006",
+    "originalNumber": null,
+    "question": "Data yang menjelaskan data lain, melingkupi panjang data, keterangan data, dll, disebut: ....",
+    "topic": "Konsep data",
+    "image": null,
+    "options": [
+      "Meta data",
+      "Quality data",
+      "Basis data",
+      "Informasi"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Meta data adalah data yang menjelaskan data lain, seperti panjang, tipe, dan keterangan data.",
+    "verificationStatus": "verified"
+  },
+  {
+    "id": "UTS-007",
+    "originalNumber": null,
+    "question": "Bagaimana Anda mengubah kolom Nama dari Sinta menjadi Santi pada tabel Pengguna? ....",
+    "topic": "SQL - DML (UPDATE)",
+    "image": null,
+    "options": [
+      "UPDATE Pengguna SET Nama = 'Santi' WHERE Nama = 'Sinta'",
+      "MODIFY Pengguna SET Nama = 'Santi' WHERE Nama = 'Sinta'",
+      "UPDATE Pengguna SET Nama = 'Sinta' INTO Nama = 'Santi'",
+      "UPDATE Pengguna SET Nama = 'Santi' WHERE Nama = 'Santi'"
+    ],
+    "correctAnswer": 0,
+    "explanation": "UPDATE ... SET ... WHERE adalah sintaks yang benar untuk mengubah nilai kolom pada baris tertentu. MODIFY dan INTO bukan sintaks SQL standar, dan opsi D salah karena klausa WHERE mencari nilai 'Santi' yang seharusnya 'Sinta'.",
+    "verificationStatus": "verified"
+  },
+  {
+    "id": "UTS-008",
+    "originalNumber": null,
+    "question": "Perhatikan notasi EER untuk LSM Y dibawah ini. diagram berisi entitas PERSON dengan subtipe EMPLOYEE, VOLUNTEER, dan DONOR, serta relasi Donates ke ITEM. Terdapat 'donor' yang belum pernah melakukan donasi.",
+    "topic": "Model data EER",
+    "image": "images/uts-008.png",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Cara Membaca Relasi: Pada notasi Crow's Foot (Information Engineering), kardinalitas sebuah entitas terhadap entitas lain dilihat dari simbol yang berada di ujung garis yang menempel pada entitas tujuan. Untuk mengetahui syarat partisipasi entitas DONOR terhadap ITEM, Anda harus melihat simbol yang menempel pada kotak ITEM. Garis vertikal (|) melambangkan kardinalitas minimum 1 (mandatory/wajib), sedangkan cabang tiga melambangkan kardinalitas maksimum banyak (many). Simbol tersebut berarti setiap 1 instans data DONOR wajib (mandatory) memiliki relasi dengan minimal 1 atau banyak instans ITEM.",
+    "verificationStatus": "verified"
+  },
+  {
+    "id": "UTS-009",
+    "originalNumber": null,
+    "question": "Perhatikan notasi EER untuk LSM Y dibawah ini. Setiap orang pada lembaga Y dikelompokkan menjadi 'employee', 'volunteer' atau 'donor'.",
+    "topic": "Model data EER",
+    "image": "images/uts-008.png",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Kunci kemungkinan False. Subtipe pada diagram bersifat parsial dan tidak disertai ketentuan total, serta kondisi 'Employee?', 'Volunteer?', dan 'Donor?' bersifat opsional, sehingga seseorang bisa tidak termasuk ketiganya. Karena gambar tidak tersedia sebagai file, soal tetap perlu ditinjau.",
+    "verificationStatus": "verified"
+  },
+  {
+    "id": "UTS-010",
+    "originalNumber": null,
+    "question": "Fakta-fakta yang berupa teks, grafik, gambar, suara, (segmen) video atau kombinasinya yang telah diolah menggunakan komputer menjadi bahan untuk pengambilan keputusan oleh seorang manager, disebut: ....",
+    "topic": "Data dan informasi",
+    "image": null,
+    "options": [
+      "Meta data",
+      "Quality data",
+      "Informasi",
+      "Basis data"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Data yang telah diolah sehingga bermakna bagi pengambilan keputusan disebut informasi. Meta data adalah data tentang data, dan basis data adalah kumpulan data terorganisasi.",
+    "verificationStatus": "verified"
+  },
+  {
+    "id": "UTS-011",
+    "originalNumber": null,
+    "question": "Pada kasus mana subkueri tidak dapat digunakan? ....",
+    "topic": "SQL - Subquery",
+    "image": null,
+    "options": [
+      "Klausa WHERE hanya pada pernyataan SELECT",
+      "Nama Field (kolom) pada pernyataan SELECT",
+      "Klausa WHERE pada pernyataan SELECT dan semua pernyataan DML yang lain",
+      "Klausa FROM dalam pernyataan SELECT"
+    ],
+    "correctAnswer": null,
+    "explanation": "Perlu dikonfirmasi maksud soal. Secara umum subkueri boleh dipakai di klausa WHERE pada SELECT maupun DML lain, dan di klausa FROM sebagai derived table. Opsi 'Nama Field (kolom)' bergantung pada dukungan DBMS terhadap scalar subquery. Mohon konfirmasi rumusan dari materi.",
+    "verificationStatus": "needs_review"
+  },
+  {
+    "id": "UTS-012",
+    "originalNumber": null,
+    "question": "Apa tipe join dari syntax berikut: SELECT MHS.ID_MAHASISWA, MK.ID_MAHASISWA, NAMA_MAHASISWA, ID_MK FROM MAHASISWA MHS, MATAKULIAH MK WHERE MHS.ID_MAHASISWA = MK.ID_MAHASISWA ....",
+    "topic": "SQL - Join",
+    "image": null,
+    "options": [
+      "Natural join",
+      "Cartesian join",
+      "Outer join",
+      "Equi-join"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Join dengan kondisi kesamaan nilai kolom di klausa WHERE disebut equi-join. Natural join menggabungkan otomatis berdasarkan nama kolom yang sama, cartesian join menggabungkan semua kombinasi, dan outer join juga menampilkan baris tanpa pasangan.",
+    "verificationStatus": "verified"
+  },
+  {
+    "id": "UTS-013",
+    "originalNumber": null,
+    "question": "Software sistem yang memungkinkan user mendefinisikan, membuat, memelihara, dan mengontrol akses terhadap basis data disebut: ....",
+    "topic": "Konsep DBMS",
+    "image": null,
+    "options": [
+      "Tables of data",
+      "Data Definition Language",
+      "Database Management System",
+      "Entity Relationship Diagram"
+    ],
+    "correctAnswer": 2,
+    "explanation": "DBMS adalah perangkat lunak yang mengelola pembuatan, pemeliharaan, dan pengendalian akses terhadap basis data. DDL hanya sebagian fungsinya, sedangkan ERD adalah alat perancangan.",
+    "verificationStatus": "verified"
+  },
+  {
+    "id": "UTS-014",
+    "originalNumber": null,
+    "question": "Yang dimaksud dengan enterprise keys adalah: ....",
+    "topic": "Kunci (key)",
+    "image": null,
+    "options": [
+      "Primary ke yang unik untuk satu relation saja",
+      "Primary ke yang unik untuk di seluruh database, dimana setiap relation masing-masing mempunyai primary key tersendiri",
+      "Primary ke yang unik untuk di seluruh database, bukan hanya dalam satu relation saja",
+      "Primary ke yang unik untuk di seluruh database, hanya dalam satu relation saja"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Enterprise key adalah primary key yang nilainya unik di seluruh database, tidak hanya di dalam satu relation. Opsi lain membatasi keunikan pada satu relation atau tidak menjelaskan konsep ini dengan tepat.",
+    "verificationStatus": "verified"
+  },
+  {
+    "id": "UTS-015",
+    "originalNumber": null,
+    "question": "Tipe JOIN apa yang diperlukan ketika Anda ingin menampilkan juga baris-baris yang tidak memiliki nilai yang sama (matching value)? ....",
+    "topic": "SQL - Join",
+    "image": null,
+    "options": [
+      "Outer join",
+      "Cartesian join",
+      "Equi-join",
+      "Natural join"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Outer join mempertahankan baris yang tidak memiliki pasangan nilai yang sama, dengan nilai NULL pada sisi yang kosong. Equi-join dan natural join hanya menampilkan baris yang cocok.",
+    "verificationStatus": "verified"
+  },
+  {
+    "id": "UTS-016",
+    "originalNumber": null,
+    "question": "Organisasi file adalah teknik untuk secara fisik mengatur record dalam file yang disimpan dalam secondary storage dengan tipe organisasi file berikut: ....",
+    "topic": "Organisasi file",
+    "image": null,
+    "options": [
+      "Indexed",
+      "Semuanya benar",
+      "Normalized",
+      "Parallel"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Indexed adalah tipe organisasi file. Normalized dan Parallel bukan tipe organisasi file, sehingga opsi 'Semuanya benar' tidak tepat.",
+    "verificationStatus": "verified"
+  },
+  {
+    "id": "UTS-017",
+    "originalNumber": null,
+    "question": "Diberikan suatu tabel database dengan nama tabel Pinjaman:\nPeminjam | Manajer_Bank | Jumlah_Pinjaman\nRomi | Sudrajat | 1.000.000\nSoni | Robert | 500.000\nMarni | Sudrajat | 700.000\n\nApa output dari kueri SQL berikut:\nSELECT Count(*) FROM ((SELECT Peminjam, Manajer_Bank FROM Pinjaman) AS S NATURAL JOIN (SELECT Manajer_Bank, Jumlah_Pinjaman FROM Pinjaman) AS T);",
+    "topic": "SQL - Natural join dan agregasi",
+    "image": null,
+    "options": [
+      "5",
+      "3",
+      "9",
+      "6"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Natural join menghubungkan kedua subquery pada kolom yang sama, yaitu Manajer_Bank. Sudrajat muncul 2 kali di S dan 2 kali di T, menghasilkan 4 pasangan. Robert muncul 1 kali di masing-masing, menghasilkan 1 pasangan. Total 5. Karena tidak memakai DISTINCT, duplikat tetap dihitung.",
+    "verificationStatus": "verified"
+  },
+  {
+    "id": "UTS-018",
+    "originalNumber": null,
+    "question": "Pada proses physical database design diperlukan input-input sebagai berikut: ....",
+    "topic": "Physical database design",
+    "image": null,
+    "options": [
+      "Semuanya benar",
+      "Tabel-tabel yang sudah dinormalisasi",
+      "Definisi atribut-atribut",
+      "Kebutuhan keamanan data"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Physical database design memerlukan tabel yang sudah dinormalisasi, definisi atribut, dan kebutuhan keamanan data sebagai masukan, sehingga 'Semuanya benar' sesuai.",
+    "verificationStatus": "verified"
+  },
+  {
+    "id": "UTS-019",
+    "originalNumber": null,
+    "question": "Manakah dari kueri berikut ini yang selalu memberikan jawaban yang sama seperti kueri berjaring (nested query) berikut: select * from R where a in (select S.a from S) ....",
+    "topic": "SQL - Subquery",
+    "image": null,
+    "options": [
+      "select R.* from R where R.a = (select S.a from S)",
+      "select R.* from R, S where R.a=S.a",
+      "select distinct R.* from R,S where R.a=S.a",
+      "select R.* from R,S where R.a=S.a and is unique R"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Nested query IN mengembalikan setiap baris R sekali jika nilai a-nya ada di S. Join dengan DISTINCT memberikan hasil yang sama. Opsi A salah karena subquery skalar gagal jika S.a memiliki lebih dari satu nilai, opsi B bisa menduplikasi baris, dan opsi D bukan sintaks SQL.",
+    "verificationStatus": "verified"
+  },
+  {
+    "id": "UTS-020",
+    "originalNumber": null,
+    "question": "Berikut keuntungan pendekatan basis data: ....",
+    "topic": "Konsep basis data",
+    "image": null,
+    "options": [
+      "Keterbatasan data sharing",
+      "Program-data independence",
+      "Biaya maintenance program cukup tinggi",
+      "Pemisahan data"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Program-data independence berarti struktur data dapat berubah tanpa mengubah program aplikasi. Keterbatasan data sharing dan biaya maintenance yang tinggi justru kelemahan sistem berbasis file.",
+    "verificationStatus": "verified"
+  },
+  {
+    "id": "UTS-021",
+    "originalNumber": null,
+    "question": "Bagaimana perintah untuk menampilkan nama kota dengan kondisi dan temperatur tertentu dari tabel Cuaca dimana kondisinya cerah atau berawan tetapi temperatur lebih dari 60 derajat? ....",
+    "topic": "SQL - WHERE dan operator logika",
+    "image": null,
+    "options": [
+      "SELECT nama_kota, temperatur, kondisi FROM Cuaca WHERE (kondisi = 'cerah' OR kondisi = 'berawan') AND temperatur > 60",
+      "SELECT nama_kota, temperatur, kondisi FROM Cuaca WHERE kondisi = 'berawan' AND kondisi = 'cerah' OR temperatur > 60",
+      "SELECT nama_kota, temperatur, kondisi FROM Cuaca WHERE kondisi = 'cerah' AND kondisi = 'berawan' AND temperatur > 60",
+      "SELECT nama_kota, temperatur, kondisi FROM Cuaca WHERE kondisi = 'berawan' OR kondisi = 'cerah' OR temperatur > 60"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Kondisinya adalah (cerah ATAU berawan) DAN temperatur > 60. Tanda kurung memastikan OR dievaluasi lebih dulu, dan '>' sesuai dengan 'lebih dari 60'. Opsi B dan D salah karena OR tanpa kurung, dan opsi C salah karena kolom kondisi tidak mungkin bernilai cerah dan berawan sekaligus.",
+    "verificationStatus": "verified"
+  },
+  {
+    "id": "UTS-022",
+    "originalNumber": null,
+    "question": "Berikut ini mana yang bukan termasuk perintah DDL? ....",
+    "topic": "SQL - DDL dan DML",
+    "image": null,
+    "options": [
+      "ALTER",
+      "TRUNCATE",
+      "UPDATE",
+      "CREATE"
+    ],
+    "correctAnswer": 2,
+    "explanation": "ALTER, TRUNCATE, dan CREATE termasuk DDL karena mengubah struktur atau objek database. UPDATE adalah DML karena mengubah isi data.",
+    "verificationStatus": "verified"
+  },
+  {
+    "id": "UTS-023",
+    "originalNumber": null,
+    "question": "Berikut kerugian sistem berbasis file (file processing system), kecuali: ....",
+    "topic": "Sistem berbasis file",
+    "image": null,
+    "options": [
+      "Data dependence",
+      "Keterbatasan data sharing",
+      "Waktu development yang panjang",
+      "Mengurangi duplikasi data"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Kerugian sistem berbasis file meliputi data dependence, keterbatasan data sharing, dan waktu development yang panjang. Duplikasi data justru menjadi masalah pada sistem berbasis file, sehingga mengurangi duplikasi bukan kerugian.",
+    "verificationStatus": "verified"
+  },
+  {
+    "id": "UTS-024",
+    "originalNumber": null,
+    "question": "Physical design sering dilakukan dengan mengikuti aturan kepatuhan (regulatory compliance), diantaranya yaitu: ....",
+    "topic": "Physical database design",
+    "image": null,
+    "options": [
+      "Semuanya benar",
+      "Committee of Sponsoring Organizations (COSO)",
+      "Control Objectives for Information and Related Technology (COBIT)",
+      "Information Technology Infrastructure Library"
+    ],
+    "correctAnswer": null,
+    "explanation": "Perlu konfirmasi dari materi. COSO dan COBIT adalah kerangka tata kelola TI yang sering dikaitkan dengan kepatuhan (misalnya SOX), sedangkan ITIL adalah kerangka layanan TI. Tanpa rujukan materi, opsi 'Semuanya benar' tidak dapat dipastikan.",
+    "verificationStatus": "needs_review"
+  },
+  {
+    "id": "UTS-025",
+    "originalNumber": null,
+    "question": "Pengertian yang tepat untuk istilah 'Specialization' dalam EER adalah: ....",
+    "topic": "Konsep EER",
+    "image": null,
+    "options": [
+      "Entity belongs to two subtypes",
+      "Subset of supertype",
+      "A group of associative entity types and relationships",
+      "Subtype gets supertype attributes",
+      "Creating subtype for an entity type"
+    ],
+    "correctAnswer": 4,
+    "explanation": "Specialization adalah proses membuat subtipe dari sebuah entity type. Pasangan lain dalam soal aslinya: Entity cluster - kelompok entity type dan relasi asosiatif; Subtype - subset dari supertype; Attribute inheritance - subtipe mewarisi atribut supertype; Overlap rule - entitas boleh termasuk dua subtipe.",
+    "verificationStatus": "verified"
+  },
+  {
+    "id": "UTS-026",
+    "originalNumber": null,
+    "question": "Berikut ini mana yang bukan termasuk Constraint (batasan) pada SQL? ....",
+    "topic": "SQL - Constraint",
+    "image": null,
+    "options": [
+      "Check",
+      "Primary Key",
+      "Not Null",
+      "Union"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Check, Primary Key, dan Not Null adalah constraint SQL. UNION adalah operator untuk menggabungkan hasil query, bukan batasan kolom.",
+    "verificationStatus": "verified"
+  },
+  {
+    "id": "UTS-027",
+    "originalNumber": null,
+    "question": "Manakah dari kueri SQL berikut yang benar untuk menampilkan semua kota dengan kondisi, suhu, dan kelembaban yang kelembabannya berada di kisaran 60 hingga 75 dari tabel Cuaca? ....",
+    "topic": "SQL - BETWEEN dan IN",
+    "image": null,
+    "options": [
+      "SELECT * FROM Cuaca WHERE Kelembaban BETWEEN 60 AND 75",
+      "SELECT * FROM Cuaca WHERE Kelembaban IN (60 to 75)",
+      "SELECT * FROM Cuaca WHERE Kelembaban IN (60, 75)",
+      "SELECT * FROM Cuaca WHERE Kelembaban IN BETWEEN 60 AND 75"
+    ],
+    "correctAnswer": 0,
+    "explanation": "BETWEEN 60 AND 75 mengambil rentang nilai inklusif (60 sampai 75). IN dengan daftar nilai hanya mengambil nilai yang tercantum, dan 'IN (60 to 75)' serta 'IN BETWEEN' bukan sintaks yang valid.",
+    "verificationStatus": "verified"
+  },
+  {
+    "id": "UTS-028",
+    "originalNumber": null,
+    "question": "Suatu tabel memiliki kualifikasi sebagai relation apabila memenuhi kualifikasi sebagai berikut, terkecuali: ....",
+    "topic": "Model relasional",
+    "image": null,
+    "options": [
+      "Nama kolom pada tabel dapat sama",
+      "Setiap nilai pada field harus atomic",
+      "Urutan kolom tidak masalah",
+      "Setiap baris harus unik, yait tidak boleh ada baris pada seluruh field memiliki nilai yang sama"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Syarat relation meliputi nilai atomik, baris yang unik, dan urutan kolom yang tidak berpengaruh. Nama kolom dalam satu tabel harus unik, sehingga 'dapat sama' adalah pengecualian.",
+    "verificationStatus": "verified"
+  },
+  {
+    "id": "UTS-029",
+    "originalNumber": null,
+    "question": "Yang dimaksud View adalah: ....",
+    "topic": "SQL - View",
+    "image": null,
+    "options": [
+      "Sebuah tabel dasar (base table) yang tidak dapat diakses dengan perintah SQL",
+      "Sebuah tabel virtual yang tidak dapat diakses dengan perintah SQL",
+      "Sebuah tabel dasar (base table) yang dapat diakses dengan perintah SQL",
+      "Sebuah tabel virtual yang dapat diakses dengan perintah SQL"
+    ],
+    "correctAnswer": 3,
+    "explanation": "View adalah tabel virtual hasil query yang dapat diakses dengan perintah SQL seperti tabel biasa, dan tidak menyimpan data sendiri.",
+    "verificationStatus": "verified"
+  },
+  {
+    "id": "UTS-030",
+    "originalNumber": null,
+    "question": "Pernyataan mana yang dapat digunakan untuk menampilkan seluruh data dari tabel Mahasiswa yang memiliki nama diawali dengan p? ....",
+    "topic": "SQL - LIKE",
+    "image": null,
+    "options": [
+      "SELECT * FROM Mahasiswa WHERE nama LIKE '%p%';",
+      "SELECT * FROM Mahasiswa WHERE nama LIKE '_p%';",
+      "SELECT * FROM Mahasiswa WHERE nama LIKE '%p';",
+      "SELECT * FROM Mahasiswa WHERE nama LIKE 'p%';"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Pola 'p%' mencocokkan nilai yang diawali huruf p. '%p%' mencari p di posisi mana pun, '_p%' berarti karakter pertama sembarang lalu p, dan '%p' mencari akhiran p.",
+    "verificationStatus": "verified"
+  },
+  {
+    "id": "UTS-031",
+    "originalNumber": null,
+    "question": "Manakah sintaks yang benar untuk menerapkan fungsi UNION? ....",
+    "topic": "SQL - UNION",
+    "image": null,
+    "options": [
+      "SELECT FROM table_name1 AND table_name2",
+      "SELECT column_name(s) FROM table_name1 UNION SELECT column_name(s) FROM table_name2",
+      "SELECT column_name(s) FROM table_name1 UNION table_name2",
+      "UNION SELECT column_name(s) FROM table_name1 SELECT column_name(s) FROM table_name2"
+    ],
+    "correctAnswer": 1,
+    "explanation": "UNION menggabungkan hasil dua SELECT lengkap dengan klausa FROM masing-masing, dengan jumlah dan tipe kolom yang sesuai.",
+    "verificationStatus": "verified"
+  },
+  {
+    "id": "UTS-032",
+    "originalNumber": null,
+    "question": "Fasilitas enquiry (query language) data termasuk fasilitas: ....",
+    "topic": "Bahasa basis data",
+    "image": null,
+    "options": [
+      "Data Definition Language",
+      "Keamanan sistem",
+      "Data Manipulation Language",
+      "Data Control Language"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Query language, yaitu SELECT untuk mengambil data, termasuk Data Manipulation Language. DDL mendefinisikan struktur, dan DCL mengatur hak akses.",
+    "verificationStatus": "verified"
+  },
+  {
+    "id": "UTS-033",
+    "originalNumber": null,
+    "question": "Proses physical design membantu manajemen database dalam hal: ....",
+    "topic": "Physical database design",
+    "image": null,
+    "options": [
+      "Optimisasi query",
+      "Semuanya benar",
+      "Penentuan tipe data pada field-field yang digunakan",
+      "Menata file organization"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Physical design mencakup pemilihan tipe data, organisasi file, dan indeks, sehingga membantu optimisasi query dan manajemen database.",
+    "verificationStatus": "verified"
+  },
+  {
+    "id": "UTS-034",
+    "originalNumber": null,
+    "question": "Sekumpulan data berbagi pakai yang secara logika berhubungan dan dirancang untuk memenuhi kebutuhan informasi dari suatu organisasi disebut: ....",
+    "topic": "Konsep basis data",
+    "image": null,
+    "options": [
+      "Basis data",
+      "Meta data",
+      "Informasi",
+      "Quality data"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Kumpulan data yang saling berhubungan secara logis dan dirancang untuk kebutuhan informasi organisasi disebut basis data. Meta data adalah data tentang data, dan informasi adalah data yang telah diolah.",
+    "verificationStatus": "verified"
+  },
+  {
+    "id": "UTS-035",
+    "originalNumber": null,
+    "question": "Normalisasi didasarkan pada normal form (1NF, 2NF, 3NF, dst) dan functional dependencies (full, partial, transitif); relation 1NF ialah relation dicapai dengan cara: ....",
+    "topic": "Normalisasi",
+    "image": null,
+    "options": [
+      "Remove partial dependencies",
+      "Remove remaining anomalies akibat multiple candidate keys",
+      "Remove multivalued attributes",
+      "Remove transitive dependencies"
+    ],
+    "correctAnswer": 2,
+    "explanation": "1NF dicapai dengan menghilangkan atribut multivalue sehingga setiap atribut bernilai atomik. Partial dependency ditangani pada 2NF, dan transitive dependency pada 3NF.",
+    "verificationStatus": "verified"
+  },
+  {
+    "id": "UTS-036",
+    "originalNumber": null,
+    "question": "Pada tipe organisasi file sequential, apabila record tidak diurutkan maka rata-rata waktu yang diperlukan untuk menemukan record yang diinginkan adalah: ....",
+    "topic": "Organisasi file",
+    "image": null,
+    "options": [
+      "Sama dengan jumlah record",
+      "Jumlah record dibagi 2",
+      "Tidak ada bedanya antara record diurutkan atau tidak"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Pada file sequential yang tidak terurut, pencarian rata-rata memeriksa setengah dari seluruh record, sehingga rata-ratanya sekitar jumlah record dibagi 2.",
+    "verificationStatus": "verified"
+  },
+  {
+    "id": "UTS-037",
+    "originalNumber": null,
+    "question": "Normalisasi ialah proses menentukan atribut-atribut mana dikelompokkan pada suatu tabel dengan menghilangkan anomali-anomali yang ada agar tidak terjadi functional dependencies ....",
+    "topic": "Normalisasi",
+    "image": null,
+    "options": [
+      "Salah",
+      "Betul"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Pernyataan dinilai Salah. Bagian awal definisi benar, tetapi tujuan normalisasi adalah menghilangkan dependensi yang tidak diinginkan melalui dekomposisi tabel, bukan menghilangkan seluruh functional dependency.",
+    "verificationStatus": "verified"
+  },
+  {
+    "id": "UTS-038",
+    "originalNumber": null,
+    "question": "Cara membedakan transitive dependency (TD), partial dependency (PD), dan full dependency (FD): ....",
+    "topic": "Dependensi fungsional",
+    "image": null,
+    "options": [
+      "FD - If the arrow goes out from the whole key (all parts of a composite key; non-key depends on the entire key)",
+      "PD - If the arrow goes out from part of a composite key; exists when/where there is a composite key",
+      "Benar semuanya",
+      "TD - From non-key to non-key"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Full dependency: atribut nonkey bergantung pada seluruh candidate key. Partial dependency: bergantung pada sebagian dari composite key. Transitive dependency: dari non-key ke non-key. Ketiga definisi ini benar, sehingga 'Benar semuanya' adalah jawabannya.",
+    "verificationStatus": "verified"
+  },
+  {
+    "id": "UTS-039",
+    "originalNumber": null,
+    "question": "Berikut ini mana syntaks SQL yang benar? ....",
+    "topic": "SQL - SELECT",
+    "image": null,
+    "options": [
+      "SELECT FROM Pengguna WHERE Username = 'Pengguna1'",
+      "SELECT Username AND Password FROM Pengguna",
+      "SELECT Username, Password FROM Pengguna",
+      "SELECT Username, Password WHERE Username = 'user1'"
+    ],
+    "correctAnswer": 2,
+    "explanation": "SELECT yang valid memiliki daftar kolom dan klausa FROM. Opsi A tidak memiliki daftar kolom, opsi B memakai AND sebagai pemisah kolom, dan opsi D tidak memiliki FROM.",
+    "verificationStatus": "verified"
+  },
+  {
+    "id": "UTS-040",
+    "originalNumber": null,
+    "question": "Tabel mainframe tunggal dihubungkan dengan sejumlah terminal, termasuk arsitektur DBMS jenis: ....",
+    "topic": "Arsitektur DBMS",
+    "image": null,
+    "options": [
+      "Peer to peer",
+      "File-Server",
+      "Client-Server",
+      "Teleprocessing"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Teleprocessing adalah konfigurasi satu mainframe yang terhubung ke sejumlah terminal. Client-server memisahkan client dan server, dan peer to peer serta file-server juga tidak sesuai dengan deskripsi.",
+    "verificationStatus": "verified"
+  },
+  {
+    "id": "UTS-041",
+    "originalNumber": null,
+    "question": "Elemen basis data yang berarti property dari objek adalah: ....",
+    "topic": "Konsep ER",
+    "image": null,
+    "options": [
+      "Atribut",
+      "Relationship",
+      "Entitas",
+      "Data flow"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Atribut adalah properti dari sebuah entitas atau objek. Relationship menghubungkan entitas, entitas adalah objek itu sendiri, dan data flow adalah konsep DFD.",
+    "verificationStatus": "verified"
+  },
+  {
+    "id": "UTS-042",
+    "originalNumber": null,
+    "question": "Tipe data VARCHAR2 adalah fixed-length character data dengan maximum length 4.000 character, misalnya VARCHAR2(50) akan selalu menghabiskan 50 karakter dalam storage space ....",
+    "topic": "Tipe data SQL",
+    "image": null,
+    "options": [
+      "Salah",
+      "Betul"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Pernyataan salah. VARCHAR2 adalah tipe variable-length, sehingga VARCHAR2(50) hanya memakai ruang sesuai isi (ditambah overhead kecil). Tipe fixed-length adalah CHAR.",
+    "verificationStatus": "verified"
+  },
+  {
+    "id": "UTS-043",
+    "originalNumber": null,
+    "question": "Sebuah perusahaan musik \"Samudra Musik\" memutuskan untuk membangun basisdata guna menyimpan data-data terkait perusahaan. Berikut ini adalah penjelasan mengenai Samudra Musik:\n1. Setiap musisi memiliki NIK, nama, alamat, no telp rumah. Beberapa musisi sharing tempat tinggal pada alamat yang sama. Setiap rumah hanya memiliki satu no telp.\n2. Setiap instrumen memiliki kode unik, nama (misalnya: gitar, seruling) dan kunci musik (misalnya: C, B-flat).\n3. Setiap album yang diproduksi memiliki kode unik, judul, tanggal copyright.\n4. Setiap lagu yang diproduksi memiliki judul dan pencipta.\n5. Setiap musisi dapat menggunakan beberapa instrumen dan sebuah instrumen dapat digunakan oleh beberapa musisi.\n6. Setiap album memiliki sejumlah lagu di dalamnya, namun setiap lagu hanya dapat muncul pada satu album.\n7. Setiap lagu dapat dibawakan oleh satu atau beberapa musisi, dan setiap musisi dapat membawakan satu atau beberapa lagu.\n8. Setiap album memiliki satu orang musisi sebagai produser, namun seorang musisi dapat memproduksi banyak album.\n\nPernyataan: Relationship antara entitas musisi dan album membentuk entitas asosiatif.",
+    "topic": "ER - Samudra Musik",
+    "image": null,
+    "options": [
+      "True",
+      "False"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Relasi musisi dan album hanya satu-banyak melalui peran produser (satu album memiliki satu produser; seorang musisi dapat memproduksi banyak album). Entitas asosiatif hanya diperlukan untuk relasi many-to-many, sehingga pernyataan ini False.",
+    "verificationStatus": "verified"
+  },
+  {
+    "id": "UTS-044",
+    "originalNumber": 10,
+    "question": "Sebuah perusahaan musik \"Samudra Musik\" memutuskan untuk membangun basisdata guna menyimpan data-data terkait perusahaan. Berikut ini adalah penjelasan mengenai Samudra Musik:\n1. Setiap musisi memiliki NIK, nama, alamat, no telp rumah. Beberapa musisi sharing tempat tinggal pada alamat yang sama. Setiap rumah hanya memiliki satu no telp.\n2. Setiap instrumen memiliki kode unik, nama (misalnya: gitar, seruling) dan kunci musik (misalnya: C, B-flat).\n3. Setiap album yang diproduksi memiliki kode unik, judul, tanggal copyright.\n4. Setiap lagu yang diproduksi memiliki judul dan pencipta.\n5. Setiap musisi dapat menggunakan beberapa instrumen dan sebuah instrumen dapat digunakan oleh beberapa musisi.\n6. Setiap album memiliki sejumlah lagu di dalamnya, namun setiap lagu hanya dapat muncul pada satu album.\n7. Setiap lagu dapat dibawakan oleh satu atau beberapa musisi, dan setiap musisi dapat membawakan satu atau beberapa lagu.\n8. Setiap album memiliki satu orang musisi sebagai produser, namun seorang musisi dapat memproduksi banyak album.\n\nPernyataan: Entitas musisi memiliki dua buah relationship terhadap entitas album.",
+    "topic": "ER - Samudra Musik",
+    "image": null,
+    "options": [
+      "True",
+      "False"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Pernyataan salah. Dalam skenario, musisi dan album hanya terhubung langsung melalui peran produser. Keterkaitan lewat lagu tidak dihitung sebagai relasi langsung.",
+    "verificationStatus": "verified"
+  },
+  {
+    "id": "UTS-045",
+    "originalNumber": null,
+    "question": "Sebuah perusahaan musik \"Samudra Musik\" memutuskan untuk membangun basisdata guna menyimpan data-data terkait perusahaan. Berikut ini adalah penjelasan mengenai Samudra Musik:\n1. Setiap musisi memiliki NIK, nama, alamat, no telp rumah. Beberapa musisi sharing tempat tinggal pada alamat yang sama. Setiap rumah hanya memiliki satu no telp.\n2. Setiap instrumen memiliki kode unik, nama (misalnya: gitar, seruling) dan kunci musik (misalnya: C, B-flat).\n3. Setiap album yang diproduksi memiliki kode unik, judul, tanggal copyright.\n4. Setiap lagu yang diproduksi memiliki judul dan pencipta.\n5. Setiap musisi dapat menggunakan beberapa instrumen dan sebuah instrumen dapat digunakan oleh beberapa musisi.\n6. Setiap album memiliki sejumlah lagu di dalamnya, namun setiap lagu hanya dapat muncul pada satu album.\n7. Setiap lagu dapat dibawakan oleh satu atau beberapa musisi, dan setiap musisi dapat membawakan satu atau beberapa lagu.\n8. Setiap album memiliki satu orang musisi sebagai produser, namun seorang musisi dapat memproduksi banyak album.\n\nPernyataan: Entitas musisi, album dan lagu membentuk satu buah ternary relationship.",
+    "topic": "ER - Samudra Musik",
+    "image": null,
+    "options": [
+      "True",
+      "False"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Ada tiga relasi biner: musisi-lagu (membawakan, M:N), album-lagu (berisi, 1:N), dan musisi-album (produser, 1:N). Tidak ada satu relasi yang menghubungkan ketiganya sekaligus, sehingga bukan ternary relationship.",
+    "verificationStatus": "verified"
+  },
+  {
+    "id": "UTS-046",
+    "originalNumber": 12,
+    "question": "Sebuah perusahaan musik \"Samudra Musik\" memutuskan untuk membangun basisdata guna menyimpan data-data terkait perusahaan. Berikut ini adalah penjelasan mengenai Samudra Musik:\n1. Setiap musisi memiliki NIK, nama, alamat, no telp rumah. Beberapa musisi sharing tempat tinggal pada alamat yang sama. Setiap rumah hanya memiliki satu no telp.\n2. Setiap instrumen memiliki kode unik, nama (misalnya: gitar, seruling) dan kunci musik (misalnya: C, B-flat).\n3. Setiap album yang diproduksi memiliki kode unik, judul, tanggal copyright.\n4. Setiap lagu yang diproduksi memiliki judul dan pencipta.\n5. Setiap musisi dapat menggunakan beberapa instrumen dan sebuah instrumen dapat digunakan oleh beberapa musisi.\n6. Setiap album memiliki sejumlah lagu di dalamnya, namun setiap lagu hanya dapat muncul pada satu album.\n7. Setiap lagu dapat dibawakan oleh satu atau beberapa musisi, dan setiap musisi dapat membawakan satu atau beberapa lagu.\n8. Setiap album memiliki satu orang musisi sebagai produser, namun seorang musisi dapat memproduksi banyak album.\n\nEntitas album: [Gambar entitas ALBUM dengan atribut Id Album (kunci), Judul, Tgl_Copyright, dan Format belum tersedia sebagai file. Pernyataan lengkap tidak tercantum pada sumber.]",
+    "topic": "ER - Samudra Musik",
+    "image": "images/uts-046.png",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Atribut 'Format' seharusnya dihapus dari diagram tersebut karena tidak ada dalam 8 poin penjelasan mengenai spesifikasi basis data basis data 'Samudra Musik'",
+    "verificationStatus": "verified"
+  },
+  {
+    "id": "UTS-047",
+    "originalNumber": null,
+    "question": "Sebuah perusahaan musik \"Samudra Musik\" memutuskan untuk membangun basisdata guna menyimpan data-data terkait perusahaan. Berikut ini adalah penjelasan mengenai Samudra Musik:\n1. Setiap musisi memiliki NIK, nama, alamat, no telp rumah. Beberapa musisi sharing tempat tinggal pada alamat yang sama. Setiap rumah hanya memiliki satu no telp.\n2. Setiap instrumen memiliki kode unik, nama (misalnya: gitar, seruling) dan kunci musik (misalnya: C, B-flat).\n3. Setiap album yang diproduksi memiliki kode unik, judul, tanggal copyright.\n4. Setiap lagu yang diproduksi memiliki judul dan pencipta.\n5. Setiap musisi dapat menggunakan beberapa instrumen dan sebuah instrumen dapat digunakan oleh beberapa musisi.\n6. Setiap album memiliki sejumlah lagu di dalamnya, namun setiap lagu hanya dapat muncul pada satu album.\n7. Setiap lagu dapat dibawakan oleh satu atau beberapa musisi, dan setiap musisi dapat membawakan satu atau beberapa lagu.\n8. Setiap album memiliki satu orang musisi sebagai produser, namun seorang musisi dapat memproduksi banyak album.\n\nEntitas instrumen adalah: [Gambar entitas Instrumen dengan atribut Id ins (kunci), Nama, dan Kunci belum tersedia sebagai file. Pernyataan lengkap tidak tercantum pada sumber.]",
+    "topic": "ER - Samudra Musik",
+    "image": "images/uts-047.png",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Semua atribut pada gambar ini sudah 100% cocok dengan aturan bisnisnya.",
+    "verificationStatus": "verified"
+  },
+  {
+    "id": "UTS-048",
+    "originalNumber": 32,
+    "question": "Sebuah perusahaan musik \"Samudra Musik\" memutuskan untuk membangun basisdata guna menyimpan data-data terkait perusahaan. Berikut ini adalah penjelasan mengenai Samudra Musik:\n1. Setiap musisi memiliki NIK, nama, alamat, no telp rumah. Beberapa musisi sharing tempat tinggal pada alamat yang sama. Setiap rumah hanya memiliki satu no telp.\n2. Setiap instrumen memiliki kode unik, nama (misalnya: gitar, seruling) dan kunci musik (misalnya: C, B-flat).\n3. Setiap album yang diproduksi memiliki kode unik, judul, tanggal copyright.\n4. Setiap lagu yang diproduksi memiliki judul dan pencipta.\n5. Setiap musisi dapat menggunakan beberapa instrumen dan sebuah instrumen dapat digunakan oleh beberapa musisi.\n6. Setiap album memiliki sejumlah lagu di dalamnya, namun setiap lagu hanya dapat muncul pada satu album.\n7. Setiap lagu dapat dibawakan oleh satu atau beberapa musisi, dan setiap musisi dapat membawakan satu atau beberapa lagu.\n8. Setiap album memiliki satu orang musisi sebagai produser, namun seorang musisi dapat memproduksi banyak album.\n\nEntitas musisi adalah: [Gambar entitas Musisi dengan atribut NIK, Nama, Alamat, dan Telp Rumah belum tersedia sebagai file. Pernyataan lengkap tidak tercantum pada sumber.]",
+    "topic": "ER - Samudra Musik",
+    "image": "images/uts-048.png",
+    "options": [
+      "True",
+      "False"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Aturan bisnis ini menunjukkan adanya hubungan ketergantungan (dependensi) antara alamat dan nomor telepon rumah, bukan melekat langsung secara mandiri pada tiap individu musisi. Jika digambar seperti di atas, maka saat ada 3 musisi yang tinggal di rumah yang sama, data Alamat dan Telp Rumah akan ditulis berulang 3 kali (redundansi data).",
+    "verificationStatus": "verified"
+  },
+  {
+    "id": "UTS-049",
+    "originalNumber": null,
+    "question": "Sebuah perusahaan musik \"Samudra Musik\" memutuskan untuk membangun basisdata guna menyimpan data-data terkait perusahaan. Berikut ini adalah penjelasan mengenai Samudra Musik:\n1. Setiap musisi memiliki NIK, nama, alamat, no telp rumah. Beberapa musisi sharing tempat tinggal pada alamat yang sama. Setiap rumah hanya memiliki satu no telp.\n2. Setiap instrumen memiliki kode unik, nama (misalnya: gitar, seruling) dan kunci musik (misalnya: C, B-flat).\n3. Setiap album yang diproduksi memiliki kode unik, judul, tanggal copyright.\n4. Setiap lagu yang diproduksi memiliki judul dan pencipta.\n5. Setiap musisi dapat menggunakan beberapa instrumen dan sebuah instrumen dapat digunakan oleh beberapa musisi.\n6. Setiap album memiliki sejumlah lagu di dalamnya, namun setiap lagu hanya dapat muncul pada satu album.\n7. Setiap lagu dapat dibawakan oleh satu atau beberapa musisi, dan setiap musisi dapat membawakan satu atau beberapa lagu.\n8. Setiap album memiliki satu orang musisi sebagai produser, namun seorang musisi dapat memproduksi banyak album.\n\nPernyataan: Berdasarkan informasi yang diberikan, alamat merupakan atribut yang bersifat komposit.",
+    "topic": "ER - Atribut komposit",
+    "image": null,
+    "options": [
+      "True",
+      "False"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Pernyataan salah. Skenario hanya menyebut 'alamat' sebagai satu atribut tanpa rincian bagian-bagiannya, sehingga tidak didukung informasi yang diberikan.",
+    "verificationStatus": "verified"
+  },
+  {
+    "id": "UTS-050",
+    "originalNumber": null,
+    "question": "Sebuah perusahaan musik \"Samudra Musik\" memutuskan untuk membangun basisdata guna menyimpan data-data terkait perusahaan. Berikut ini adalah penjelasan mengenai Samudra Musik:\n1. Setiap musisi memiliki NIK, nama, alamat, no telp rumah. Beberapa musisi sharing tempat tinggal pada alamat yang sama. Setiap rumah hanya memiliki satu no telp.\n2. Setiap instrumen memiliki kode unik, nama (misalnya: gitar, seruling) dan kunci musik (misalnya: C, B-flat).\n3. Setiap album yang diproduksi memiliki kode unik, judul, tanggal copyright.\n4. Setiap lagu yang diproduksi memiliki judul dan pencipta.\n5. Setiap musisi dapat menggunakan beberapa instrumen dan sebuah instrumen dapat digunakan oleh beberapa musisi.\n6. Setiap album memiliki sejumlah lagu di dalamnya, namun setiap lagu hanya dapat muncul pada satu album.\n7. Setiap lagu dapat dibawakan oleh satu atau beberapa musisi, dan setiap musisi dapat membawakan satu atau beberapa lagu.\n8. Setiap album memiliki satu orang musisi sebagai produser, namun seorang musisi dapat memproduksi banyak album.\n\nPernyataan: Relationship antara entitas album dan lagu memiliki cardinality Many-To-Many.",
+    "topic": "ER - Kardinalitas",
+    "image": null,
+    "options": [
+      "True",
+      "False"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Relasi album-lagu bersifat satu-banyak: setiap album memiliki banyak lagu, tetapi setiap lagu hanya muncul pada satu album (aturan nomor 6). Kardinalitasnya 1:N, bukan many-to-many.",
+    "verificationStatus": "verified"
+  }
 ]

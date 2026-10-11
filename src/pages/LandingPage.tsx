@@ -1,5 +1,6 @@
 import { useNav } from "../context"
 import dashboardBg from "../assets/dashboard-bg.jpg"
+import AsprakCarousel from "../components/AsprakCarousel";
 
 const HERO_IMAGE = dashboardBg
 
@@ -317,7 +318,7 @@ export default function LandingPage() {
                   </span>
                 </div>
                 <p className="text-slate-800 font-bold leading-relaxed">
-                  "Satu tempat lengkap untuk absensi foto 3 pose bergaya photobox, unduh LKP modul praktikum, pelajari materi database, tantangan kuis SQL, dan pantau posisi rankingmu!"
+                  "Jadi apakah kalian pikir kita kita berdua jadi asprak karena jago basdat? Basdatnya A? pintar? hebat? oh tidakkk, in this economy kita perlu duit aja sih, jadi selamat terjebak ya teman teman, ENJOY!"
                 </p>
               </div>
             </div>
@@ -352,6 +353,8 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+
+      <AsprakCarousel />
 
       {/* ========================================================
           COMIC STATS STRIP

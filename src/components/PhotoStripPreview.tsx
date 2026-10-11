@@ -1,26 +1,83 @@
-import React from "react"
 
-export default function PhotoStripPreview({ photos, onClose }: { photos: string[], onClose: () => void }) {
+import { useRef } from "react"
+
+export default function PhotoStripPreview({
+  photos,
+  onClose,
+}: {
+  photos: string[]
+  onClose: () => void
+}) {
+  const stripRef = useRef<HTMLDivElement>(null)
+
+  const downloadStrip = async () => {
+    if (!stripRef.current) return
+
+    try {
+      const html2canvas = (await import("html2canvas")).default
+      const canvas = await html2canvas(stripRef.current, {
+        scale: 3,
+        useCORS: true,
+        backgroundColor: null,
+      })
+
+      const link = document.createElement("a")
+      link.download = "mini-fotobooth.png"
+      link.href = canvas.toDataURL("image/png")
+      link.click()
+    } catch (error) {
+      console.error(error)
+      alert("Gagal mengunduh photo strip.")
+    }
+  }
+
   return (
-    <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4">
-      <div className="relative bg-white p-4 pb-8 rounded-xl shadow-2xl max-h-full overflow-y-auto">
-        <button 
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/80 p-4"
+      onClick={onClose}
+    >
+      <div
+        className="relative my-auto w-full max-w-sm"
+        onClick={(event) => event.stopPropagation()}
+      >
+        <button
           onClick={onClose}
-          className="absolute top-2 right-2 w-8 h-8 rounded-full bg-red-500 text-white font-bold flex items-center justify-center hover:bg-red-600 transition-colors z-10"
+          className="absolute right-2 top-2 z-20 rounded-full border-2 border-black bg-red-500 px-3 py-2 font-bold text-white"
         >
           ✕
         </button>
-        <div className="space-y-4 pt-8" id="photo-strip">
-          {photos.map((src, i) => (
-            <div key={i} className="border-4 border-black overflow-hidden bg-black aspect-video relative" style={{ width: "240px" }}>
-              <img src={src} className="w-full h-full object-cover" alt={`Pose ${i+1}`} />
-            </div>
+
+        {/* TEMPLATE ASLI */}
+        <div ref={stripRef} className="relative w-full">
+          <img
+            src="/images/photostrip-template.png"
+            alt="Template foto strip"
+            className="block h-auto w-full"
+          />
+
+          {/* Foto ditempatkan di atas template */}
+          {photos.slice(0, 3).map((photo, index) => (
+            <img
+              key={index}
+              src={photo}
+              alt={`Foto ${index + 1}`}
+              className="absolute object-cover"
+              style={{
+                left: "12%",
+                width: "76%",
+                top: `${12 + index * 24}%`,
+                height: "20%",
+              }}
+            />
           ))}
         </div>
-        <div className="text-center mt-6">
-          <h3 className="font-black text-2xl uppercase tracking-widest" style={{ fontFamily: "'Bangers', cursive" }}>Praktikum Basdat</h3>
-          <p className="text-xs font-bold text-gray-500 mt-1">Sistem Mini Fotobooth 📸</p>
-        </div>
+
+        <button
+          onClick={downloadStrip}
+          className="mt-5 w-full rounded-lg border-2 border-black bg-green-500 px-4 py-3 font-black text-white"
+        >
+          Download Photo Strip
+        </button>
       </div>
     </div>
   )

@@ -1,0 +1,10 @@
+{
+  "description": "Create customizable dashboards that visualize data insights for businesses, enhancing decision-making and performance tracking.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

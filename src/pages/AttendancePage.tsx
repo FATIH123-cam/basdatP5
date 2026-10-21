@@ -1,12 +1,13 @@
 import { useState } from "react"
 import { useNav } from "../context"
-import { meetings } from "../data/mockData"
+import { useDatabase } from "../context/DatabaseContext"
 import AppLayout from "../components/AppLayout"
 
 type Step = "select" | "instructions" | "camera" | "review" | "success"
 
 export default function AttendancePage() {
   const { page, navigate } = useNav()
+  const { currentUser, pertemuanList, getStudentAbsensiList, setStudentMeetingAttendance } = useDatabase()
 
   // Determine step from page context
   const stepFromPage: Record<string, Step> = {
@@ -20,9 +21,10 @@ export default function AttendancePage() {
   const [selectedMeeting, setSelectedMeeting] = useState<number | null>(null)
   const [capturedPhotos, setCapturedPhotos] = useState<string[]>([])
 
-  const unsubmittedMeetings = meetings.filter(
-    (m) => m.status === "belum-submit" || m.status === "belum"
-  )
+  const studentRecords = getStudentAbsensiList(currentUser.id)
+  const unsubmittedMeetings = studentRecords
+    .filter((r) => r.status !== "Hadir")
+    .map((r) => r.pertemuan)
 
   const goTo = (s: Step) => setStep(s)
 
@@ -180,7 +182,12 @@ export default function AttendancePage() {
           <PhotoReview
             photos={capturedPhotos}
             onBack={() => goTo("camera")}
-            onSubmit={() => goTo("success")}
+            onSubmit={() => {
+              if (selectedMeeting) {
+                setStudentMeetingAttendance(currentUser.id, selectedMeeting, "Hadir")
+              }
+              goTo("success")
+            }}
             meetingId={selectedMeeting}
           />
         </div>

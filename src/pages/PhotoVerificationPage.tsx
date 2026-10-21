@@ -1,28 +1,32 @@
 import { useState } from "react"
 import { useNav } from "../context"
-import { adminStudents } from "../data/mockData"
+import { useDatabase } from "../context/DatabaseContext"
 import AppLayout from "../components/AppLayout"
-
-// Simulated photo strip data
-const mockPhotoStrips = adminStudents
-  .filter(s => s.hasPhoto)
-  .map((s, idx) => ({
-    ...s,
-    stripColor: ["#FFE033", "#18B5D8", "#E8212A", "#22C55E", "#7C3AED"][idx % 5],
-    submittedAt: s.submitTime ?? "2024-09-30 09:00",
-    // Simulated photos as colored boxes (in real app, these would be actual photos)
-    photos: [1, 2, 3].map(i => ({ pose: ["normal", "lucu", "serius"][i - 1], idx: i })),
-  }))
 
 export default function PhotoVerificationPage() {
   const { navigate } = useNav()
-  const [strips, setStrips] = useState(mockPhotoStrips)
-  const [selectedStrip, setSelectedStrip] = useState<typeof mockPhotoStrips[0] | null>(null)
+  const { praktikanList, setStudentMeetingAttendance } = useDatabase()
+
+  // Generate verification strips from real praktikan
+  const [strips, setStrips] = useState(() =>
+    praktikanList.slice(0, 10).map((s, idx) => ({
+      id: s.id,
+      name: s.nama,
+      nim: s.nim,
+      meeting: 5,
+      status: idx < 3 ? "menunggu-verifikasi" : idx < 7 ? "hadir" : "ditolak",
+      stripColor: ["#FFE033", "#18B5D8", "#E8212A", "#22C55E", "#7C3AED"][idx % 5],
+      submittedAt: `2026-09-30 08:${15 + idx * 5}`,
+      photos: [1, 2, 3].map(i => ({ pose: ["normal", "lucu", "serius"][i - 1], idx: i })),
+    }))
+  )
+  const [selectedStrip, setSelectedStrip] = useState<any | null>(null)
   const [rejectReason, setRejectReason] = useState("")
   const [showRejectModal, setShowRejectModal] = useState(false)
 
   const handleApprove = (id: number) => {
     setStrips(prev => prev.map(s => s.id === id ? { ...s, status: "hadir" } : s))
+    setStudentMeetingAttendance(id, 5, "Hadir")
     setSelectedStrip(null)
   }
 
@@ -32,6 +36,7 @@ export default function PhotoVerificationPage() {
       return
     }
     setStrips(prev => prev.map(s => s.id === id ? { ...s, status: "ditolak" } : s))
+    setStudentMeetingAttendance(id, 5, "Alpa")
     setSelectedStrip(null)
     setShowRejectModal(false)
     setRejectReason("")

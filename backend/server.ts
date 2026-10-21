@@ -139,6 +139,110 @@ app.post('/api/erd', async (req, res) => {
   }
 });
 
+// =========================================================
+// Endpoints for ERD Schema Tables
+// =========================================================
+
+// Praktikan
+app.get('/api/praktikan', async (req, res) => {
+  try {
+    const { rows } = await query('SELECT id, nim, nama, role, profile_picture, header_picture FROM praktikan ORDER BY id ASC');
+    res.json(rows);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch praktikan' });
+  }
+});
+
+// Pertemuan
+app.get('/api/pertemuan', async (req, res) => {
+  try {
+    const { rows } = await query('SELECT * FROM pertemuan ORDER BY minggu_ke ASC');
+    res.json(rows);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch pertemuan' });
+  }
+});
+
+// Materi
+app.get('/api/materi', async (req, res) => {
+  try {
+    const { rows } = await query('SELECT * FROM materi ORDER BY pertemuan_id ASC');
+    res.json(rows);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch materi' });
+  }
+});
+
+app.put('/api/materi/:pertemuan_id', async (req, res) => {
+  const { file_url, is_open } = req.body;
+  try {
+    const { rows } = await query(
+      'UPDATE materi SET file_url = $1, is_open = $2 WHERE pertemuan_id = $3 RETURNING *',
+      [file_url, is_open, req.params.pertemuan_id]
+    );
+    res.json(rows[0]);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to update materi' });
+  }
+});
+
+// LKP
+app.get('/api/lkp', async (req, res) => {
+  try {
+    const { rows } = await query('SELECT * FROM lkp ORDER BY pertemuan_id ASC');
+    res.json(rows);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch lkp' });
+  }
+});
+
+app.put('/api/lkp/:pertemuan_id', async (req, res) => {
+  const { file_url, is_open } = req.body;
+  try {
+    const { rows } = await query(
+      'UPDATE lkp SET file_url = $1, is_open = $2 WHERE pertemuan_id = $3 RETURNING *',
+      [file_url, is_open, req.params.pertemuan_id]
+    );
+    res.json(rows[0]);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to update lkp' });
+  }
+});
+
+// Absensi (ERD table)
+app.get('/api/absensi', async (req, res) => {
+  const { praktikan_id, pertemuan_id } = req.query;
+  let q = 'SELECT * FROM absensi WHERE 1=1';
+  const params: any[] = [];
+  if (praktikan_id) {
+    params.push(praktikan_id);
+    q += ` AND praktikan_id = $${params.length}`;
+  }
+  if (pertemuan_id) {
+    params.push(pertemuan_id);
+    q += ` AND pertemuan_id = $${params.length}`;
+  }
+  try {
+    const { rows } = await query(q, params);
+    res.json(rows);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch absensi' });
+  }
+});
+
+app.put('/api/absensi/:praktikan_id/:pertemuan_id', async (req, res) => {
+  const { status, waktu_absen } = req.body;
+  try {
+    const { rows } = await query(
+      'INSERT INTO absensi (praktikan_id, pertemuan_id, status, waktu_absen) VALUES ($1, $2, $3, $4) ON CONFLICT (praktikan_id, pertemuan_id) DO UPDATE SET status = EXCLUDED.status, waktu_absen = EXCLUDED.waktu_absen RETURNING *',
+      [req.params.praktikan_id, req.params.pertemuan_id, status, waktu_absen]
+    );
+    res.json(rows[0]);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to update absensi' });
+  }
+});
+
 app.listen(port, () => {
   console.log(`Backend API running on port ${port}`);
 });

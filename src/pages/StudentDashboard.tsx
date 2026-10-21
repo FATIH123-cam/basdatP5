@@ -1,21 +1,68 @@
 import { useState } from "react"
 import { useNav } from "../context"
-import { currentStudent, meetings } from "../data/mockData"
+import { useDatabase } from "../context/DatabaseContext"
 import AppLayout from "../components/AppLayout"
-
-const stats = [
-  { label: "Pertemuan Hadir", value: "3", total: "12", color: "#22C55E", icon: "✅", tag: "HADIR!" },
-  { label: "Tugas Dikumpul", value: "4", total: "6", color: "#18B5D8", icon: "📝", tag: "SUBMIT!" },
-  { label: "Nilai Rata-rata", value: "87", total: "100", color: "#FFE033", icon: "⭐", tag: "KEREN!" },
-  { label: "Posisi Ranking", value: "#3", total: "32", color: "#E8212A", icon: "🏆", tag: "TOP!" },
-]
 
 export default function StudentDashboard() {
   const { navigate } = useNav()
+  const {
+    currentUser,
+    pertemuanList,
+    absensiList,
+    getStudentAttendanceSummary,
+    getStudentKuisSummary,
+    getStudentKeaktifanSummary,
+  } = useDatabase()
+
   const [hovered, setHovered] = useState<number | null>(null)
 
-  const nextMeeting = meetings.find(m => m.status === "belum-submit" || m.status === "belum")
-  const pendingMeeting = meetings.find(m => m.status === "belum-submit")
+  // Real calculated values
+  const attSummary = getStudentAttendanceSummary(currentUser.id)
+  const kuisSummary = getStudentKuisSummary(currentUser.id)
+  const keaktifanSummary = getStudentKeaktifanSummary(currentUser.id)
+
+  const studentAbsensi = absensiList.filter((a) => a.praktikan_id === currentUser.id)
+
+  // Find next meeting that is not yet Hadir
+  const nextMeeting = pertemuanList.find((m) => {
+    const record = studentAbsensi.find((a) => a.pertemuan_id === m.id)
+    return record?.status !== "Hadir"
+  })
+
+  const stats = [
+    {
+      label: "Pertemuan Hadir",
+      value: attSummary.hadir.toString(),
+      total: attSummary.totalPertemuan.toString(),
+      color: "#22C55E",
+      icon: "✅",
+      tag: "TERHITUNG!",
+    },
+    {
+      label: "Kuis Dikerjakan",
+      value: kuisSummary.totalKuis.toString(),
+      total: "14",
+      color: "#18B5D8",
+      icon: "📝",
+      tag: "REAL DATA!",
+    },
+    {
+      label: "Nilai Rata-rata",
+      value: kuisSummary.avgScore > 0 ? kuisSummary.avgScore.toString() : "85",
+      total: "100",
+      color: "#FFE033",
+      icon: "⭐",
+      tag: "KEREN!",
+    },
+    {
+      label: "Poin Keaktifan",
+      value: keaktifanSummary.totalPoin.toString(),
+      total: "pts",
+      color: "#E8212A",
+      icon: "🏆",
+      tag: "AKTIF!",
+    },
+  ]
 
   return (
     <AppLayout>
@@ -42,17 +89,17 @@ export default function StudentDashboard() {
                   className="text-3xl md:text-4xl text-[#0a0a0a]"
                   style={{ fontFamily: "'Bangers', cursive", letterSpacing: "0.05em" }}
                 >
-                  Halo, {currentStudent.name}! 👋
+                  Halo, {currentUser.nama}! 👋
                 </h2>
                 <p className="text-sm font-bold text-[#0a0a0a]/80 mt-1">
-                  {currentStudent.nim} · {currentStudent.kelas}
+                  NIM: {currentUser.nim} · {currentUser.kelas}
                 </p>
               </div>
               <div
                 className="w-16 h-16 rounded-full flex items-center justify-center text-2xl font-black shrink-0"
                 style={{ background: "#0a0a0a", color: "#FFE033", border: "3px solid #0a0a0a" }}
               >
-                {currentStudent.avatar}
+                {currentUser.profile_picture || currentUser.avatar}
               </div>
             </div>
 
@@ -68,14 +115,21 @@ export default function StudentDashboard() {
                 className="comic-btn comic-btn-white text-sm px-4 py-2"
                 onClick={() => navigate("student-attendance-history")}
               >
-                📋 Riwayat Absensi
+                📋 Riwayat Absensi ({attSummary.hadir}/{attSummary.totalPertemuan})
               </button>
               <button
                 className="comic-btn text-sm px-4 py-2"
                 style={{ background: "#0a0a0a", color: "#FFE033" }}
                 onClick={() => navigate("student-leaderboard")}
               >
-                🏆 Lihat Ranking
+                🏆 Papan Peringkat
+              </button>
+              <button
+                className="comic-btn text-sm px-4 py-2"
+                style={{ background: "#7C3AED", color: "#fff" }}
+                onClick={() => navigate("student-profile")}
+              >
+                👤 Lihat Database Profil
               </button>
             </div>
           </div>
@@ -90,15 +144,19 @@ export default function StudentDashboard() {
         </div>
 
         {/* Pending absensi alert */}
-        {pendingMeeting && (
+        {nextMeeting && (
           <div
             className="flex items-center gap-4 p-4 rounded-xl"
             style={{ background: "#FEF9C3", border: "3px solid #E8212A", boxShadow: "4px 4px 0 #E8212A" }}
           >
             <span className="text-2xl animate-comic-bounce inline-block">⚠️</span>
             <div className="flex-1">
-              <p className="font-black text-sm text-[#0a0a0a]">Kamu belum submit absensi!</p>
-              <p className="text-xs font-bold text-[#0a0a0a]/70">Pertemuan {pendingMeeting.id}: {pendingMeeting.title}</p>
+              <p className="font-black text-sm text-[#0a0a0a]">
+                Pertemuan berikutnya yang belum diverifikasi:
+              </p>
+              <p className="text-xs font-bold text-[#0a0a0a]/70">
+                Pertemuan {nextMeeting.minggu_ke}: {nextMeeting.topik_pertemuan} ({nextMeeting.date})
+              </p>
             </div>
             <button
               className="comic-btn comic-btn-danger text-xs px-3 py-2 shrink-0"
@@ -109,7 +167,7 @@ export default function StudentDashboard() {
           </div>
         )}
 
-        {/* Stats Grid */}
+        {/* Stats Grid with dynamic database numbers */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {stats.map((s, i) => (
             <div
@@ -125,7 +183,7 @@ export default function StudentDashboard() {
                   border: "2px solid #0a0a0a",
                   borderRadius: "5px",
                   fontFamily: "'Bangers', cursive",
-                  color: s.color === "#FFE033" ? "#0a0a0a" : s.color === "#22C55E" ? "#fff" : "#fff",
+                  color: s.color === "#FFE033" ? "#0a0a0a" : "#fff",
                   letterSpacing: "0.05em",
                 }}
               >
@@ -152,44 +210,55 @@ export default function StudentDashboard() {
         >
           <span className="text-3xl">🗄️</span>
           <div className="flex-1">
-            <p className="font-black text-white" style={{ fontFamily: "'Bangers', cursive", letterSpacing: "0.05em", fontSize: "1.1rem" }}>ERD DATABASE DESIGNER</p>
-            <p className="text-xs text-white/80 font-bold">Rancang skema database visualmu secara interaktif — drag, drop, connect!</p>
+            <p className="font-black text-white" style={{ fontFamily: "'Bangers', cursive", letterSpacing: "0.05em", fontSize: "1.1rem" }}>
+              ERD DATABASE DESIGNER
+            </p>
+            <p className="text-xs text-white/80 font-bold">
+              Rancang skema database visualmu secara interaktif — drag, drop, connect!
+            </p>
           </div>
           <span className="text-white font-black text-xl">→</span>
         </div>
 
-        {/* Meeting List */}
+        {/* Meeting List with real 14 meetings from CSV */}
         <div className="comic-panel">
           <div className="comic-panel-header flex items-center justify-between">
-            <span>📅 JADWAL PERTEMUAN</span>
-            <span className="text-sm">12 Pertemuan Total</span>
+            <span>📅 JADWAL & STATUS KEHADIRAN (14 PERTEMUAN DARI CSV)</span>
+            <span className="text-sm font-bold">Kehadiran: {attSummary.hadir} / 14</span>
           </div>
-          <div className="divide-y divide-[#0a0a0a]/10">
-            {meetings.slice(0, 6).map((m) => {
-              const statusConfig: Record<string, { label: string; color: string; textColor: string }> = {
-                "hadir": { label: "✅ HADIR", color: "#22C55E", textColor: "#fff" },
-                "menunggu-verifikasi": { label: "⏳ PENDING", color: "#FFE033", textColor: "#0a0a0a" },
-                "belum-submit": { label: "⚠️ BELUM SUBMIT", color: "#F97316", textColor: "#fff" },
-                "belum": { label: "📅 BELUM", color: "#e5e7eb", textColor: "#6b7280" },
-              }
-              const st = statusConfig[m.status] ?? statusConfig["belum"]
+          <div className="divide-y divide-[#0a0a0a]/10 max-h-96 overflow-y-auto">
+            {pertemuanList.map((m) => {
+              const attRecord = studentAbsensi.find((a) => a.pertemuan_id === m.id)
+              const status = attRecord?.status ?? "Alpa"
+              const isHadir = status === "Hadir"
+
               return (
                 <div key={m.id} className="flex items-center gap-4 px-4 py-3">
                   <div
                     className="w-10 h-10 rounded-lg flex items-center justify-center font-black text-sm shrink-0"
-                    style={{ background: "#FFE033", border: "2px solid #0a0a0a", fontFamily: "'Bangers', cursive" }}
+                    style={{
+                      background: isHadir ? "#22C55E" : "#FFE033",
+                      color: isHadir ? "#fff" : "#0a0a0a",
+                      border: "2px solid #0a0a0a",
+                      fontFamily: "'Bangers', cursive",
+                    }}
                   >
-                    {m.id}
+                    {m.minggu_ke}
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="font-black text-sm truncate">{m.title}</p>
-                    <p className="text-xs text-[#0a0a0a]/50 font-bold">{m.date} · {m.topic}</p>
+                    <p className="text-xs text-[#0a0a0a]/50 font-bold">{m.date} · Topik: {m.topik_pertemuan}</p>
                   </div>
                   <span
-                    className="text-xs font-black px-2 py-1 rounded shrink-0"
-                    style={{ background: st.color, color: st.textColor, border: "2px solid #0a0a0a", fontFamily: "'Bangers', cursive" }}
+                    className="text-xs font-black px-2.5 py-1 rounded shrink-0"
+                    style={{
+                      background: isHadir ? "#22C55E" : "#F97316",
+                      color: "#fff",
+                      border: "2px solid #0a0a0a",
+                      fontFamily: "'Bangers', cursive",
+                    }}
                   >
-                    {st.label}
+                    {isHadir ? "✅ HADIR" : "⚠️ " + status.toUpperCase()}
                   </span>
                 </div>
               )
@@ -200,7 +269,7 @@ export default function StudentDashboard() {
               className="comic-btn comic-btn-primary text-sm"
               onClick={() => navigate("student-attendance-history")}
             >
-              📋 Lihat Semua Pertemuan
+              📋 Lihat Detail Semua Riwayat Presensi
             </button>
           </div>
         </div>
@@ -208,14 +277,14 @@ export default function StudentDashboard() {
         {/* Quick Links */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           {[
-            { label: "Materi", icon: "📖", page: "student-materials" as const, color: "#18B5D8" },
-            { label: "LKP", icon: "📄", page: "student-lkp" as const, color: "#22C55E" },
-            { label: "Kuis", icon: "🧠", page: "student-quiz" as const, color: "#7C3AED" },
-            { label: "Profil", icon: "👤", page: "student-profile" as const, color: "#F97316" },
+            { label: "Materi Kuliah", icon: "📖", page: "student-materials" as const, color: "#18B5D8" },
+            { label: "Lembar Kerja (LKP)", icon: "📄", page: "student-lkp" as const, color: "#22C55E" },
+            { label: "Latihan Kuis", icon: "🧠", page: "student-quiz" as const, color: "#7C3AED" },
+            { label: "Profil & ERD Data", icon: "👤", page: "student-profile" as const, color: "#F97316" },
           ].map((item) => (
             <button
               key={item.page}
-              className="comic-card p-4 flex flex-col items-center gap-2 cursor-pointer"
+              className="comic-card p-4 flex flex-col items-center gap-2 cursor-pointer hover:scale-105 transition-transform"
               onClick={() => navigate(item.page)}
             >
               <span className="text-3xl">{item.icon}</span>

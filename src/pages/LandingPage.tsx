@@ -225,7 +225,7 @@ export default function LandingPage() {
                   letterSpacing: "0.05em",
                 }}
               >
-                <span>🔥</span> SEMESTER GANJIL 2024/2025
+                <span>🔥</span> SEMESTER GANJIL 2026/2027
               </div>
 
               <div
@@ -769,7 +769,7 @@ export default function LandingPage() {
             className="pt-6 text-center text-xs font-bold text-slate-400 border-t-2 border-zinc-800"
             style={{ fontFamily: "'Comic Neue', sans-serif" }}
           >
-            © 2024 Praktikum Basis Data P5 — Edisi Komik Superhero. Hak cipta dilindungi.
+            © 2026 Praktikum Basis Data P5 — Edisi Komik Superhero. Hak cipta dilindungi.
           </div>
         </div>
       </footer>

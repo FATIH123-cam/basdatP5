@@ -1,14 +1,23 @@
 import { useNav } from "../context"
-import { currentAdmin, meetings, adminStudents } from "../data/mockData"
+import { useDatabase } from "../context/DatabaseContext"
 import AppLayout from "../components/AppLayout"
 
 export default function AdminDashboard() {
   const { navigate } = useNav()
+  const {
+    currentUser,
+    praktikanList,
+    pertemuanList,
+    materiList,
+    lkpList,
+    absensiList,
+  } = useDatabase()
 
-  const pending = adminStudents.filter(s => s.status === "menunggu-verifikasi").length
-  const hadir = adminStudents.filter(s => s.status === "hadir").length
-  const totalStudents = adminStudents.length
-  const belumSubmit = adminStudents.filter(s => s.status === "belum-submit").length
+  const totalStudents = praktikanList.length
+  const totalMeetings = pertemuanList.length
+  const openMaterials = materiList.filter((m) => m.is_open && m.file_url).length
+  const openLKP = lkpList.filter((l) => l.is_open && l.file_url).length
+  const totalHadir = absensiList.filter((a) => a.status === "Hadir").length
 
   return (
     <AppLayout>
@@ -19,32 +28,34 @@ export default function AdminDashboard() {
           style={{ background: "#0a0a0a", border: "4px solid #0a0a0a", boxShadow: "6px 6px 0 #FFE033" }}
         >
           <div
-            className="absolute top-4 right-4 text-5xl opacity-20 select-none"
+            className="absolute top-4 right-4 text-5xl opacity-20 select-none pointer-events-none"
             style={{ fontFamily: "'Bangers', cursive", color: "#FFE033", transform: "rotate(10deg)" }}
           >
-            ADMIN!
+            ASPRAK!
           </div>
-          <div className="flex items-center gap-4 relative z-10">
+          <div className="flex items-center gap-4 relative z-10 flex-wrap">
             <div
-              className="w-16 h-16 rounded-full flex items-center justify-center font-black text-xl shrink-0"
-              style={{ background: "#FFE033", border: "3px solid #FFE033" }}
+              className="w-16 h-16 rounded-full flex items-center justify-center font-black text-2xl shrink-0"
+              style={{ background: "#FFE033", border: "3px solid #FFE033", color: "#0a0a0a" }}
             >
-              {currentAdmin.avatar}
+              {currentUser.profile_picture || currentUser.avatar || "AS"}
             </div>
             <div>
               <div
                 className="inline-block px-2 py-0.5 text-xs font-black mb-1 rounded"
                 style={{ background: "#FFE033", color: "#0a0a0a", fontFamily: "'Bangers', cursive" }}
               >
-                ASISTEN PRAKTIKUM
+                ASISTEN PRAKTIKUM BASIS DATA
               </div>
               <h2
-                className="text-3xl text-[#FFE033]"
+                className="text-3xl text-[#FFE033] font-black"
                 style={{ fontFamily: "'Bangers', cursive", letterSpacing: "0.05em" }}
               >
-                Halo, {currentAdmin.name}! 👋
+                Halo, {currentUser.nama}! 👋
               </h2>
-              <p className="font-bold text-sm text-white/60">{currentAdmin.nim} · {currentAdmin.role}</p>
+              <p className="font-bold text-sm text-white/70">
+                NIM: {currentUser.nim} · {currentUser.email}
+              </p>
             </div>
           </div>
           <div className="flex flex-wrap gap-3 mt-5 relative z-10">
@@ -52,33 +63,39 @@ export default function AdminDashboard() {
               className="comic-btn comic-btn-primary text-sm px-4 py-2"
               onClick={() => navigate("admin-attendance")}
             >
-              📋 Kelola Absensi
+              📋 Kelola Absensi Mahasiswa
             </button>
             <button
               className="comic-btn text-sm px-4 py-2"
               style={{ background: "#18B5D8", color: "#fff", border: "3px solid #FFE033" }}
+              onClick={() => navigate("admin-materials")}
+            >
+              📖 Kelola Link & Akses Materi
+            </button>
+            <button
+              className="comic-btn text-sm px-4 py-2"
+              style={{ background: "#22C55E", color: "#fff", border: "3px solid #FFE033" }}
+              onClick={() => navigate("admin-lkp")}
+            >
+              📄 Kelola Link & Akses LKP
+            </button>
+            <button
+              className="comic-btn text-sm px-4 py-2"
+              style={{ background: "#7C3AED", color: "#fff", border: "3px solid #FFE033" }}
               onClick={() => navigate("admin-photo-verify")}
             >
-              📸 Verifikasi Foto
-              {pending > 0 && (
-                <span
-                  className="ml-2 w-5 h-5 rounded-full flex items-center justify-center text-xs font-black"
-                  style={{ background: "#E8212A", color: "#fff" }}
-                >
-                  {pending}
-                </span>
-              )}
+              📸 Verifikasi Foto Presensi
             </button>
           </div>
         </div>
 
-        {/* Stats */}
+        {/* Stats Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
-            { label: "Total Mahasiswa", value: totalStudents, icon: "👥", color: "#18B5D8", tag: "TOTAL!" },
-            { label: "Sudah Hadir", value: hadir, icon: "✅", color: "#22C55E", tag: "HADIR!" },
-            { label: "Menunggu Verifikasi", value: pending, icon: "⏳", color: "#FFE033", tag: "PENDING!" },
-            { label: "Belum Submit", value: belumSubmit, icon: "⚠️", color: "#E8212A", tag: "ALERT!" },
+            { label: "Total Mahasiswa", value: totalStudents, icon: "👥", color: "#18B5D8", tag: "40 PRAKTIKAN" },
+            { label: "Jadwal Pertemuan", value: totalMeetings, icon: "📅", color: "#22C55E", tag: "14 SESI CSV" },
+            { label: "Materi Terbuka", value: `${openMaterials} / 14`, icon: "📖", color: "#FFE033", tag: "KONTEN" },
+            { label: "LKP Terbuka", value: `${openLKP} / 14`, icon: "📄", color: "#E8212A", tag: "LEMBAR KERJA" },
           ].map((s, i) => (
             <div key={i} className="comic-card p-4">
               <div
@@ -103,39 +120,19 @@ export default function AdminDashboard() {
           ))}
         </div>
 
-        {/* Pending verification alert */}
-        {pending > 0 && (
-          <div
-            className="flex items-center gap-4 p-4 rounded-xl"
-            style={{ background: "#FEF9C3", border: "3px solid #F97316", boxShadow: "4px 4px 0 #F97316" }}
-          >
-            <span className="text-2xl animate-comic-bounce inline-block">📸</span>
-            <div className="flex-1">
-              <p className="font-black text-sm">{pending} foto absensi menunggu verifikasimu!</p>
-              <p className="text-xs font-bold text-[#0a0a0a]/60">Segera verifikasi agar mahasiswa mendapat konfirmasi kehadiran.</p>
-            </div>
-            <button
-              className="comic-btn comic-btn-danger text-xs px-3 py-2 shrink-0"
-              onClick={() => navigate("admin-photo-verify")}
-            >
-              Verifikasi →
-            </button>
-          </div>
-        )}
-
-        {/* Quick menu */}
+        {/* Quick menu navigation cards */}
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           {[
-            { label: "Absensi", icon: "📋", page: "admin-attendance" as const, color: "#1B72D4", desc: "Kelola & monitor absensi" },
-            { label: "Verifikasi Foto", icon: "📸", page: "admin-photo-verify" as const, color: "#E8212A", desc: "Review photo strip mahasiswa" },
-            { label: "Materi", icon: "📖", page: "admin-materials" as const, color: "#22C55E", desc: "Upload & kelola modul" },
-            { label: "Kuis", icon: "🧠", page: "admin-quiz" as const, color: "#7C3AED", desc: "Buat & kelola soal kuis" },
-            { label: "ERD Designer", icon: "🗄️", page: "admin-erd" as const, color: "#F97316", desc: "Rancang database schema" },
+            { label: "Kelola Absensi", icon: "📋", page: "admin-attendance" as const, color: "#1B72D4", desc: "Tambah/kurang absen & ganti status" },
+            { label: "Link & Akses Materi", icon: "📖", page: "admin-materials" as const, color: "#22C55E", desc: "Atur link materi & buka/tutup akses" },
+            { label: "Link & Akses LKP", icon: "📄", page: "admin-lkp" as const, color: "#E8212A", desc: "Atur link lembar kerja praktikum" },
+            { label: "Verifikasi Foto", icon: "📸", page: "admin-photo-verify" as const, color: "#FFE033", desc: "Review photo strip presensi" },
+            { label: "ERD Designer", icon: "🗄️", page: "admin-erd" as const, color: "#F97316", desc: "Rancang visual database schema" },
             { label: "Pengumuman", icon: "📢", page: "admin-announcements" as const, color: "#18B5D8", desc: "Kirim info ke mahasiswa" },
           ].map((item) => (
             <button
               key={item.page}
-              className="comic-card p-4 text-left flex items-start gap-3"
+              className="comic-card p-4 text-left flex items-start gap-3 hover:scale-[1.02] transition-transform"
               onClick={() => navigate(item.page)}
             >
               <div
@@ -152,45 +149,42 @@ export default function AdminDashboard() {
           ))}
         </div>
 
-        {/* Recent submissions */}
+        {/* Sample Student Overview */}
         <div className="comic-panel">
-          <div className="comic-panel-header">📬 SUBMISSION TERBARU</div>
+          <div className="comic-panel-header flex items-center justify-between">
+            <span>👥 OVERVIEW PRAKTIKAN (CONTOH 5 DARI 40 MAHASISWA)</span>
+            <button
+              onClick={() => navigate("admin-attendance")}
+              className="text-xs font-bold text-[#FFE033] underline"
+            >
+              Lihat Semua 40 Mahasiswa →
+            </button>
+          </div>
           <div className="divide-y divide-[#0a0a0a]/10">
-            {adminStudents.filter(s => s.submitTime).slice(0, 5).map((s) => {
-              const statusConfig: Record<string, { label: string; color: string; text: string }> = {
-                "hadir": { label: "✅ HADIR", color: "#22C55E", text: "#fff" },
-                "menunggu-verifikasi": { label: "⏳ PENDING", color: "#FFE033", text: "#0a0a0a" },
-                "ditolak": { label: "❌ DITOLAK", color: "#E8212A", text: "#fff" },
-              }
-              const st = statusConfig[s.status] ?? { label: s.status, color: "#e5e7eb", text: "#6b7280" }
-              return (
-                <div key={s.id} className="flex items-center gap-4 px-4 py-3">
-                  <div
-                    className="w-9 h-9 rounded-full flex items-center justify-center font-black text-sm shrink-0"
-                    style={{ background: "#18B5D8", border: "2px solid #0a0a0a", color: "#fff" }}
-                  >
-                    {s.name.split(" ").map(w => w[0]).join("").slice(0, 2)}
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="font-black text-sm truncate">{s.name}</p>
-                    <p className="text-xs text-[#0a0a0a]/50 font-bold">{s.nim} · {s.submitTime}</p>
-                  </div>
-                  <span
-                    className="text-xs font-black px-2 py-1 rounded shrink-0"
-                    style={{ background: st.color, color: st.text, border: "2px solid #0a0a0a", fontFamily: "'Bangers', cursive" }}
-                  >
-                    {st.label}
-                  </span>
+            {praktikanList.slice(0, 5).map((s) => (
+              <div key={s.id} className="flex items-center gap-4 px-4 py-3 flex-wrap">
+                <div
+                  className="w-9 h-9 rounded-full flex items-center justify-center font-black text-sm shrink-0"
+                  style={{ background: "#FFE033", border: "2px solid #0a0a0a", color: "#0a0a0a" }}
+                >
+                  {s.avatar}
                 </div>
-              )
-            })}
+                <div className="flex-1 min-w-0">
+                  <p className="font-black text-sm truncate">{s.nama}</p>
+                  <p className="text-xs text-[#0a0a0a]/50 font-bold font-mono">{s.nim} · {s.kelas}</p>
+                </div>
+                <div className="text-xs font-black px-2.5 py-1 rounded bg-green-100 text-green-800 border border-green-300">
+                  ✅ Inisialisasi: 5 Hadir
+                </div>
+              </div>
+            ))}
           </div>
           <div className="p-4 text-center">
             <button
               className="comic-btn comic-btn-primary text-sm"
               onClick={() => navigate("admin-attendance")}
             >
-              📋 Lihat Semua
+              📋 Buka Halaman Kelola Absensi Lengkap
             </button>
           </div>
         </div>

@@ -1,4 +1,5 @@
 import { useNav, PageName } from "../context"
+import { useDatabase } from "../context/DatabaseContext"
 
 interface NavItem {
   label: string
@@ -114,6 +115,12 @@ const adminNavItems: NavItem[] = [
     icon: <Icon d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />,
   },
   {
+    label: "LKP",
+    page: "admin-lkp",
+    emoji: "📄",
+    icon: <Icon d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z M14 2v6h6" />,
+  },
+  {
     label: "Kuis",
     page: "admin-quiz",
     emoji: "🧠",
@@ -140,6 +147,7 @@ interface Props {
 
 export default function Sidebar({ open, onClose }: Props) {
   const { page, navigate, role, setRole } = useNav()
+  const { currentUser } = useDatabase()
 
   const isAdmin = role === "admin"
   const navItems = isAdmin ? adminNavItems : studentNavItems
@@ -229,11 +237,28 @@ export default function Sidebar({ open, onClose }: Props) {
           })}
         </nav>
 
-        {/* Logout */}
-        <div className="px-3 py-3 border-t border-white/10">
+        {/* User Info & Logout */}
+        <div className="px-3 py-3 border-t border-white/10 space-y-2">
+          <div className="p-2 rounded-lg bg-white/5 border border-white/10 flex items-center gap-2.5">
+            <div
+              className="w-9 h-9 rounded-full flex items-center justify-center font-black text-sm shrink-0"
+              style={{ background: "#FFE033", color: "#0a0a0a" }}
+            >
+              {currentUser.profile_picture || currentUser.avatar}
+            </div>
+            <div className="min-w-0 flex-1">
+              <p className="text-xs font-black text-white truncate leading-tight">
+                {currentUser.nama}
+              </p>
+              <p className="text-[10px] text-gray-400 font-mono truncate">
+                {currentUser.nim} · <span className="capitalize text-yellow-300 font-bold">{currentUser.role}</span>
+              </p>
+            </div>
+          </div>
+
           <button
             onClick={handleLogout}
-            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left text-sm font-bold transition-all"
+            className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left text-sm font-bold transition-all hover:bg-red-500/10"
             style={{ color: "#E8212A" }}
           >
             <span>🚪</span>

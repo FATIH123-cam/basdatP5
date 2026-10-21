@@ -18,6 +18,7 @@ import PhotoVerificationPage from "./pages/PhotoVerificationPage";
 import AdminContentPage from "./pages/AdminContentPage";
 
 import GlobalMusicPlayer from "./components/GlobalMusicPlayer";
+import { DatabaseProvider } from "./context/DatabaseContext";
 
 const attendancePages: PageName[] = [
   "student-attendance-select",
@@ -70,20 +71,22 @@ export default function App() {
     useState<number | null>(null);
 
   return (
-    <NavContext.Provider
-      value={{
-        page,
-        navigate: setPage,
-        role,
-        setRole,
-        selectedMeeting,
-        setSelectedMeeting,
-        selectedVerifyId,
-        setSelectedVerifyId,
-      }}
-    >
-      <GlobalMusicPlayer />
-      <PageRouter page={page} />
-    </NavContext.Provider>
+    <DatabaseProvider>
+      <NavContext.Provider
+        value={{
+          page,
+          navigate: setPage,
+          role,
+          setRole,
+          selectedMeeting,
+          setSelectedMeeting,
+          selectedVerifyId,
+          setSelectedVerifyId,
+        }}
+      >
+        <GlobalMusicPlayer />
+        <PageRouter page={page} />
+      </NavContext.Provider>
+    </DatabaseProvider>
   );
 }
